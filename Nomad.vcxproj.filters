@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Resource Files\Shaders">
+      <UniqueIdentifier>{cfc82ab0-447d-4bff-982a-5dbcf72b8b96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Assets">
+      <UniqueIdentifier>{374eccf5-d787-4ea8-bc2b-e5c64db55750}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Assets\Models/Textures">
+      <UniqueIdentifier>{083c899d-4732-4f46-b18a-936a5e5fafbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Assets\Models/Textures\Backpack">
+      <UniqueIdentifier>{cdc23eb0-d2fd-494c-8be3-7ac106cfb1ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Assets\Models/Textures\Vampire">
+      <UniqueIdentifier>{026a4460-9570-4fdc-aaaf-985868233c79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Assets\Models/Textures\Forgotten">
+      <UniqueIdentifier>{0cb92e3f-e9aa-4f03-abab-8d2423d1cec0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Assets\Models/Textures\Bob">
+      <UniqueIdentifier>{572ec112-9ee7-4555-92c1-fd9e548a3557}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Assets\Models/Textures\Other">
+      <UniqueIdentifier>{8670d468-06a7-4219-8d2f-51ed7e568f6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Assets\Models/Textures\Other\Textures">
+      <UniqueIdentifier>{c785768d-2f31-47e5-8760-3377429dc823}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="glad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EBO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VAO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VBO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletalMesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletalModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bone.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Animator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EBO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VAO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VBO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletalMesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletalModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AssimpGLMHelpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bone.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BasicModel.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="BasicModel.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Light.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Light.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="backpack.mtl">
+      <Filter>Resource Files\Assets\Models/Textures\Backpack</Filter>
+    </None>
+    <None Include="dancing_vampire.dae">
+      <Filter>Resource Files\Assets\Models/Textures\Vampire</Filter>
+    </None>
+    <None Include="Forgotten.FBX">
+      <Filter>Resource Files\Assets\Models/Textures\Forgotten</Filter>
+    </None>
+    <None Include="boblampclean.md5mesh">
+      <Filter>Resource Files\Assets\Models/Textures\Bob</Filter>
+    </None>
+    <None Include="SkeletalModel.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="SkeletalModel.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="boblampclean.md5anim">
+      <Filter>Resource Files\Assets\Models/Textures\Bob</Filter>
+    </None>
+    <None Include="ForgottenWalk.FBX">
+      <Filter>Resource Files\Assets\Models/Textures\Forgotten</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="normal.png">
+      <Filter>Resource Files\Assets\Models/Textures\Backpack</Filter>
+    </Image>
+    <Image Include="ao.jpg">
+      <Filter>Resource Files\Assets\Models/Textures\Backpack</Filter>
+    </Image>
+    <Image Include="specular.jpg">
+      <Filter>Resource Files\Assets\Models/Textures\Backpack</Filter>
+    </Image>
+    <Image Include="roughness.jpg">
+      <Filter>Resource Files\Assets\Models/Textures\Backpack</Filter>
+    </Image>
+    <Image Include="Vampire_specular.png">
+      <Filter>Resource Files\Assets\Models/Textures\Vampire</Filter>
+    </Image>
+    <Image Include="Vampire_normal.png">
+      <Filter>Resource Files\Assets\Models/Textures\Vampire</Filter>
+    </Image>
+    <Image Include="Vampire_emission.png">
+      <Filter>Resource Files\Assets\Models/Textures\Vampire</Filter>
+    </Image>
+    <Image Include="Vampire_diffuse.png">
+      <Filter>Resource Files\Assets\Models/Textures\Vampire</Filter>
+    </Image>
+    <Image Include="guard1_helmet.tga">
+      <Filter>Resource Files\Assets\Models/Textures\Bob</Filter>
+    </Image>
+    <Image Include="guard1_face.tga">
+      <Filter>Resource Files\Assets\Models/Textures\Bob</Filter>
+    </Image>
+    <Image Include="guard1_body.tga">
+      <Filter>Resource Files\Assets\Models/Textures\Bob</Filter>
+    </Image>
+    <Image Include="round_grill.tga">
+      <Filter>Resource Files\Assets\Models/Textures\Bob</Filter>
+    </Image>
+    <Image Include="iron_grill.tga">
+      <Filter>Resource Files\Assets\Models/Textures\Bob</Filter>
+    </Image>
+    <Image Include="brick.png">
+      <Filter>Resource Files\Assets\Models/Textures\Other\Textures</Filter>
+    </Image>
+    <Image Include="planks.png">
+      <Filter>Resource Files\Assets\Models/Textures\Other\Textures</Filter>
+    </Image>
+    <Image Include="planksSpec.png">
+      <Filter>Resource Files\Assets\Models/Textures\Other\Textures</Filter>
+    </Image>
+    <Image Include="pop_cat.png">
+      <Filter>Resource Files\Assets\Models/Textures\Other\Textures</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="backpack.obj">
+      <Filter>Resource Files\Assets\Models/Textures\Backpack</Filter>
+    </Object>
+  </ItemGroup>
+</Project>
