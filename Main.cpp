@@ -52,6 +52,11 @@ int main()
 	glm::vec3 axis(1, 0, 0); // Y-axis
 	skeletalModel.mModelMatrix = glm::rotate(skeletalModel.mModelMatrix, angle, axis);
 
+	BasicModel model{};
+	model.loadModel("boblampclean.md5mesh");
+	float angle2 = glm::radians(-45.0f);
+	model.mModelMatrix = glm::rotate(model.mModelMatrix, angle2, axis);
+
 
 	// Enables the Depth Buffer
 	glEnable(GL_DEPTH_TEST);
@@ -82,6 +87,7 @@ int main()
 
 		// Draws different meshes
 		skeletalModel.draw(camera, light, transforms);
+		model.draw(camera, light);
 
 		light.drawIndicator(camera);
 

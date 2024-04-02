@@ -12,9 +12,7 @@ BasicModel::~BasicModel()
 void BasicModel::loadModel(const std::string& fileName)
 {
     mModelMatrix = glm::translate(mModelMatrix, mPosition);
-    shader.Activate();
-    glUniformMatrix4fv(glGetUniformLocation(shader.ID, "model"), 1, GL_FALSE, glm::value_ptr(mModelMatrix));
-
+    
 	mScene = mImporter.ReadFile(fileName.c_str(), aiProcess_Triangulate /*aiProcess_FlipUVs*/ | aiProcess_GenSmoothNormals | aiProcess_JoinIdenticalVertices);
     
 	if(mScene)
@@ -30,11 +28,12 @@ void BasicModel::loadModel(const std::string& fileName)
 
 void BasicModel::draw(Camera& camera, const Light& light)
 {
-    shader.Activate();
-    glUniform4f(glGetUniformLocation(shader.ID, "lightColor"), light.mLightColor.x, light.mLightColor.y, light.mLightColor.z, light.mLightColor.w);
-    glUniform3f(glGetUniformLocation(shader.ID, "lightPos"), light.mLightPos.x, light.mLightPos.y, light.mLightPos.z);
+    shader.activate();
+    glUniformMatrix4fv(glGetUniformLocation(shader.mId, "model"), 1, GL_FALSE, glm::value_ptr(mModelMatrix));
+    glUniform4f(glGetUniformLocation(shader.mId, "lightColor"), light.mLightColor.x, light.mLightColor.y, light.mLightColor.z, light.mLightColor.w);
+    glUniform3f(glGetUniformLocation(shader.mId, "lightPos"), light.mLightPos.x, light.mLightPos.y, light.mLightPos.z);
     // Take care of the camera Matrix
-    glUniform3f(glGetUniformLocation(shader.ID, "camPos"), camera.mPosition.x, camera.mPosition.y, camera.mPosition.z);
+    glUniform3f(glGetUniformLocation(shader.mId, "camPos"), camera.mPosition.x, camera.mPosition.y, camera.mPosition.z);
     camera.matrix(shader);
 	for(auto & mesh : mMeshes)
 	{
@@ -98,7 +97,8 @@ void BasicModel::initSingleMesh(const aiMesh* paiMesh, const std::string& fileNa
     // getting the diffuse texture I only need one diffuse texture per mesh in any cases my shader can process one diffuse texture
     aiString strDiffuse;
     material->GetTexture(aiTextureType_DIFFUSE, 0, &strDiffuse);
-    if (strDiffuse.C_Str() != nullptr)
+    aiString path;
+    if (strDiffuse.C_Str() != nullptr && material->GetTexture(aiTextureType_DIFFUSE, 0, &path, NULL, NULL, NULL, NULL, NULL) == AI_SUCCESS)
     {
         bool foundDif = false;
         int foundIndexDif = 0;
@@ -142,7 +142,7 @@ void BasicModel::initSingleMesh(const aiMesh* paiMesh, const std::string& fileNa
     // same for speculer
     aiString strSpec;
     material->GetTexture(aiTextureType_SPECULAR, 0, &strSpec);
-    if (strSpec.C_Str() != nullptr)
+    if (strSpec.C_Str() != nullptr && material->GetTexture(aiTextureType_SPECULAR, 0, &path, NULL, NULL, NULL, NULL, NULL) == AI_SUCCESS)
     {
         bool foundSpec = false;
         int foundIndexSpec = 0;

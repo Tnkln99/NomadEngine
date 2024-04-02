@@ -29,10 +29,10 @@ void Light::loadLightIndicator()
 
 void Light::drawIndicator(Camera& camera)
 {
-	mLightIndicatorShader.Activate();
+	mLightIndicatorShader.activate();
 
-	glUniformMatrix4fv(glGetUniformLocation(mLightIndicatorShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(mLightModel));
-	glUniform4f(glGetUniformLocation(mLightIndicatorShader.ID, "lightColor"), mLightColor.x, mLightColor.y, mLightColor.z, mLightColor.w);
+	glUniformMatrix4fv(glGetUniformLocation(mLightIndicatorShader.mId, "model"), 1, GL_FALSE, glm::value_ptr(mLightModel));
+	glUniform4f(glGetUniformLocation(mLightIndicatorShader.mId, "lightColor"), mLightColor.x, mLightColor.y, mLightColor.z, mLightColor.w);
 	camera.matrix(mLightIndicatorShader);
 
 	mVao.bind();

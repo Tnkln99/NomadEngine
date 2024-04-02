@@ -90,9 +90,9 @@ Texture::Texture(const char* image, const char* texType, GLuint slot)
 void Texture::texUnit(Shader& shader, const char* uniform, GLuint unit)
 {
 	// Gets the location of the uniform
-	GLuint texUni = glGetUniformLocation(shader.ID, uniform);
+	GLuint texUni = glGetUniformLocation(shader.mId, uniform);
 	// Shader needs to be activated before changing the value of a uniform
-	shader.Activate();
+	shader.activate();
 	// Sets the value of the uniform
 	glUniform1i(texUni, unit);
 }
