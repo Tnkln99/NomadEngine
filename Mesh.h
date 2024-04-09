@@ -1,5 +1,4 @@
-#ifndef MESH_CLASS_H
-#define MESH_CLASS_H
+#pragma once
 
 #include "VAO.h"
 
@@ -22,4 +21,3 @@ public:
 	// Draws the mesh
 	virtual void draw(Shader& shader);
 };
-#endif

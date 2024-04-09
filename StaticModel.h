@@ -1,18 +1,17 @@
-#ifndef BASICMODEL_CLASS_H
-#define BASICMODEL_CLASS_H
+#pragma once
 
 #include "Mesh.h"
 #include "Light.h"
 
-#include <assimp/Importer.hpp>      // C++ importer interface
-#include <assimp/scene.h>       // Output data structure
-#include <assimp/postprocess.h> // Post processing flags
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 
-class BasicModel
+class StaticModel
 {
 public:
-	BasicModel();
-	~BasicModel();
+	StaticModel() = default;
+	~StaticModel();
 
 	glm::vec3 mPosition{ 0.0f };
 	glm::vec3 mScale{ 1.0f };
@@ -24,7 +23,7 @@ public:
 
 	void draw(Camera& camera, const Light& light);
 private:
-	Shader shader{ "BasicModel.vert", "BasicModel.frag" };
+	Shader shader{ "StaticModel.vert", "StaticModel.frag" };
 	struct TextureLoaded
 	{
 		Texture mTex;
@@ -40,5 +39,4 @@ private:
 	const aiScene* mScene{};
 };
 
-#endif
 

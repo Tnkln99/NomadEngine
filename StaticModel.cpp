@@ -1,15 +1,13 @@
-#include "BasicModel.h"
+#include "StaticModel.h"
 
 #include <assimp/postprocess.h>
 
-BasicModel::BasicModel() = default;
-
-BasicModel::~BasicModel()
+StaticModel::~StaticModel()
 {
-    shader.Delete();
+   
 }
 
-void BasicModel::loadModel(const std::string& fileName)
+void StaticModel::loadModel(const std::string& fileName)
 {
     mModelMatrix = glm::translate(mModelMatrix, mPosition);
     
@@ -26,7 +24,7 @@ void BasicModel::loadModel(const std::string& fileName)
 	}
 }
 
-void BasicModel::draw(Camera& camera, const Light& light)
+void StaticModel::draw(Camera& camera, const Light& light)
 {
     shader.activate();
     glUniformMatrix4fv(glGetUniformLocation(shader.mId, "model"), 1, GL_FALSE, glm::value_ptr(mModelMatrix));
@@ -41,7 +39,7 @@ void BasicModel::draw(Camera& camera, const Light& light)
 	}
 }
 
-void BasicModel::initFromScene(const std::string& fileName)
+void StaticModel::initFromScene(const std::string& fileName)
 {
     for(unsigned int i = 0; i < mScene->mNumMeshes; i++)
     {
@@ -51,7 +49,7 @@ void BasicModel::initFromScene(const std::string& fileName)
 }
 
 // ReSharper disable once CppMemberFunctionMayBeStatic
-void BasicModel::initSingleMesh(const aiMesh* paiMesh, const std::string& fileName)
+void StaticModel::initSingleMesh(const aiMesh* paiMesh, const std::string& fileName)
 {
     std::vector<Vertex> vertices;
     std::vector<unsigned int> indices;

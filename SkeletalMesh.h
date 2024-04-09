@@ -1,5 +1,4 @@
-#ifndef SKELATALMESH_CLASS_H
-#define SKELATALMESH_CLASS_H
+#pragma once
 
 #include"VAO.h"
 #include"EBO.h"
@@ -21,8 +20,3 @@ public:
 	// Draws the mesh
 	void draw(Shader& shader);
 };
-
-
-
-#endif
-

@@ -1,5 +1,4 @@
-#ifndef SKELATALMODEL_CLASS_H
-#define SKELATALMODEL_CLASS_H
+#pragma once
 
 #include <map>
 
@@ -62,6 +61,3 @@ private:
 	Assimp::Importer mImporter;
 	const aiScene* mScene{};
 };
-
-
-#endif

@@ -79,8 +79,8 @@
     <LibraryPath>C:\Users\tanku\Documents\Projects\Engines\Nomad\Libaries\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\tanku\Documents\Projects\Engines\Nomad\Libaries\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\tanku\Documents\Projects\Engines\Nomad\Libaries\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libaries\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>C:\Users\tanku\Documents\Projects\Engines\Nomad\Libaries\Include;$(IncludePath)</IncludePath>
@@ -122,6 +122,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libaries\Include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,7 +150,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Animator.cpp" />
-    <ClCompile Include="BasicModel.cpp" />
+    <ClCompile Include="StaticModel.cpp" />
     <ClCompile Include="Bone.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="EBO.cpp" />
@@ -169,7 +170,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Animator.h" />
     <ClInclude Include="AssimpGLMHelpers.h" />
-    <ClInclude Include="BasicModel.h" />
+    <ClInclude Include="StaticModel.h" />
     <ClInclude Include="Bone.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="EBO.h" />
@@ -187,8 +188,8 @@
     <None Include="boblampclean.md5anim" />
     <None Include="boblampclean.md5mesh" />
     <None Include="dancing_vampire.dae" />
-    <None Include="BasicModel.frag" />
-    <None Include="BasicModel.vert" />
+    <None Include="StaticModel.frag" />
+    <None Include="StaticModel.vert" />
     <None Include="Forgotten.FBX" />
     <None Include="ForgottenWalk.FBX" />
     <None Include="Light.frag" />

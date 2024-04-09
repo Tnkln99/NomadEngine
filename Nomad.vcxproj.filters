@@ -72,7 +72,7 @@
     <ClCompile Include="Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BasicModel.cpp">
+    <ClCompile Include="StaticModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Light.cpp">
@@ -116,7 +116,7 @@
     <ClInclude Include="Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BasicModel.h">
+    <ClInclude Include="StaticModel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Light.h">
@@ -142,10 +142,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="BasicModel.frag">
+    <None Include="StaticModel.frag">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="BasicModel.vert">
+    <None Include="StaticModel.vert">
       <Filter>Resource Files\Shaders</Filter>
     </None>
     <None Include="Light.frag">
