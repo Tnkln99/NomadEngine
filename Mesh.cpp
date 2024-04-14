@@ -32,7 +32,7 @@ void Mesh::draw(Shader& shader)
 	for (unsigned int i = 0; i < mTextures.size(); i++)
 	{
 		std::string num;
-		std::string type = mTextures[i].type;
+		std::string type = mTextures[i].mType;
 		if (type == "diffuse")
 		{
 			num = std::to_string(numDiffuse++);
