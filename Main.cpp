@@ -57,10 +57,10 @@ int main()
 	glm::vec3 axis(1, 0, 0); // Y-axis
 	skeletalModel.mModelMatrix = glm::rotate(skeletalModel.mModelMatrix, angle, axis);
 
-	//StaticModel model{};
-	//model.loadModel("boblampclean.md5mesh");
-	//float angle2 = glm::radians(-45.0f);
-	//model.mModelMatrix = glm::rotate(model.mModelMatrix, angle2, axis);
+	StaticModel model{};
+	model.loadModel("boblampclean.md5mesh");
+	float angle2 = glm::radians(-45.0f);
+	model.mModelMatrix = glm::rotate(model.mModelMatrix, angle2, axis);
 
 
 	// Enables the Depth Buffer
@@ -79,6 +79,7 @@ int main()
 		float currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
+
 		if(glfwGetKey(window, 32) && (glfwGetTime() - lastIndexChangeTimer) > 1.0f  )
 		{
 			debugBoneIndex++;
