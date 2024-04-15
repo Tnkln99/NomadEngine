@@ -4,11 +4,17 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "EBO.h"
+#include "ResourceManager.h"
 
+
+Light::Light()
+{
+	mLightIndicatorShader = ResourceManager::getLoadedShader("lightIndicator");
+}
 
 Light::~Light()
 {
-	mLightIndicatorShader.Delete();
+	mLightIndicatorShader->Delete();
 }
 
 void Light::loadLightIndicator()
@@ -29,10 +35,10 @@ void Light::loadLightIndicator()
 
 void Light::drawIndicator(Camera& camera)
 {
-	mLightIndicatorShader.activate();
+	mLightIndicatorShader->activate();
 
-	glUniformMatrix4fv(glGetUniformLocation(mLightIndicatorShader.mId, "model"), 1, GL_FALSE, glm::value_ptr(mLightModel));
-	glUniform4f(glGetUniformLocation(mLightIndicatorShader.mId, "lightColor"), mLightColor.x, mLightColor.y, mLightColor.z, mLightColor.w);
+	glUniformMatrix4fv(glGetUniformLocation(mLightIndicatorShader->mId, "model"), 1, GL_FALSE, glm::value_ptr(mLightModel));
+	glUniform4f(glGetUniformLocation(mLightIndicatorShader->mId, "lightColor"), mLightColor.x, mLightColor.y, mLightColor.z, mLightColor.w);
 	camera.matrix(mLightIndicatorShader);
 
 	mVao.bind();

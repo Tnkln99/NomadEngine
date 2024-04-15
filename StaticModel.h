@@ -10,7 +10,7 @@
 class StaticModel
 {
 public:
-	StaticModel() = default;
+	StaticModel();
 	~StaticModel();
 
 	glm::vec3 mPosition{ 0.0f };
@@ -23,7 +23,7 @@ public:
 
 	void draw(Camera& camera, const Light& light);
 private:
-	Shader shader{ "StaticModel.vert", "StaticModel.frag" };
+	std::shared_ptr<Shader> mShader{};
 	struct TextureLoaded
 	{
 		Texture mTex;

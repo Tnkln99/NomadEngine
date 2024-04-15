@@ -20,11 +20,11 @@ void Camera::updateMatrix(float FOVdeg, float nearPlane, float farPlane)
 	mCameraMatrix = mProjection * mView;
 }
 
-void Camera::matrix(Shader& shader)
+void Camera::matrix(std::shared_ptr<Shader> shader)
 {
 	// Exports camera matrix
-	glUniformMatrix4fv(glGetUniformLocation(shader.mId, "projection"), 1, GL_FALSE, glm::value_ptr(mProjection));
-	glUniformMatrix4fv(glGetUniformLocation(shader.mId, "view"), 1, GL_FALSE, glm::value_ptr(mView));
+	glUniformMatrix4fv(glGetUniformLocation(shader->mId, "projection"), 1, GL_FALSE, glm::value_ptr(mProjection));
+	glUniformMatrix4fv(glGetUniformLocation(shader->mId, "view"), 1, GL_FALSE, glm::value_ptr(mView));
 }
 
 

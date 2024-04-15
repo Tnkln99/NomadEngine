@@ -15,7 +15,9 @@ public:
 	// Reference ID of the Shader Program
 	GLuint mId;
 	// Constructor that build the Shader Program from 2 different shaders
-	Shader(const char* vertexFile, const char* fragmentFile);
+	Shader() = default;
+
+	void loadShader(const char* vertexFile, const char* fragmentFile);
 
 	// Activates the Shader Program
 	void activate();

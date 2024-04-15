@@ -39,10 +39,11 @@ public:
 
 	void loadModel(const std::string& fileName);
 
-	void draw(Camera& camera, const Light& light, std::vector<glm::mat4>& finalBoneMatrices);
+	void draw(Camera& camera, const Light& light, 
+		std::vector<glm::mat4>& finalBoneMatrices, int debugBoneIndex);
 
 private:
-	Shader mShader{"SkeletalModel.vert", "SkeletalModel.frag"};
+	std::shared_ptr<Shader> mShader{};
 
 	struct TextureLoaded
 	{

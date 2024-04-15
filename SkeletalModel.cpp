@@ -1,11 +1,16 @@
 #include "SkeletalModel.h"
 #include "AssimpGLMHelpers.h"
 
-SkeletalModel::SkeletalModel() = default;
+#include "ResourceManager.h"
+
+SkeletalModel::SkeletalModel()
+{
+    mShader = ResourceManager::getLoadedShader("SkeletalModel");
+}
 
 SkeletalModel::~SkeletalModel()
 {
-	mShader.Delete();
+	mShader->Delete();
 }
 
 void SkeletalModel::loadModel(const std::string& fileName)
@@ -26,24 +31,25 @@ void SkeletalModel::loadModel(const std::string& fileName)
 	}
 }
 
-void SkeletalModel::draw(Camera& camera, const Light& light, std::vector<glm::mat4>& finalBoneMatrices)
+void SkeletalModel::draw(Camera& camera, const Light& light, 
+    std::vector<glm::mat4>& finalBoneMatrices, int debugBoneIndex)
 {
-	mShader.activate();
-    glUniformMatrix4fv(glGetUniformLocation(mShader.mId, "model"), 1, GL_FALSE, glm::value_ptr(mModelMatrix));
-	glUniform4f(glGetUniformLocation(mShader.mId, "lightColor"), light.mLightColor.x, light.mLightColor.y, light.mLightColor.z, light.mLightColor.w);
-	glUniform3f(glGetUniformLocation(mShader.mId, "lightPos"), light.mLightPos.x, light.mLightPos.y, light.mLightPos.z);
+	mShader->activate();
+    glUniformMatrix4fv(glGetUniformLocation(mShader->mId, "model"), 1, GL_FALSE, glm::value_ptr(mModelMatrix));
+	glUniform4f(glGetUniformLocation(mShader->mId, "lightColor"), light.mLightColor.x, light.mLightColor.y, light.mLightColor.z, light.mLightColor.w);
+	glUniform3f(glGetUniformLocation(mShader->mId, "lightPos"), light.mLightPos.x, light.mLightPos.y, light.mLightPos.z);
 	// Take care of the camera Matrix
-	glUniform3f(glGetUniformLocation(mShader.mId, "camPos"), camera.mPosition.x, camera.mPosition.y, camera.mPosition.z);
+	glUniform3f(glGetUniformLocation(mShader->mId, "camPos"), camera.mPosition.x, camera.mPosition.y, camera.mPosition.z);
 
     // to show skinning
-    glUniform1i(glGetUniformLocation(mShader.mId, "debugOpen"), 1);
+    glUniform1i(glGetUniformLocation(mShader->mId, "debugOpen"), 1);
     // bone to show the skinning
-    glUniform1i(glGetUniformLocation(mShader.mId, "debugBone"), 2);
+    glUniform1i(glGetUniformLocation(mShader->mId, "debugBone"), debugBoneIndex);
 
     for (int i = 0; i < finalBoneMatrices.size(); ++i)
     {
         std::string name = "finalBonesMatrices[" + std::to_string(i) + "]";
-        glUniformMatrix4fv(glGetUniformLocation(mShader.mId, name.c_str()), 1, GL_FALSE, glm::value_ptr(finalBoneMatrices[i]));
+        glUniformMatrix4fv(glGetUniformLocation(mShader->mId, name.c_str()), 1, GL_FALSE, glm::value_ptr(finalBoneMatrices[i]));
     }
 
 	camera.matrix(mShader);

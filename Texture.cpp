@@ -172,12 +172,12 @@ Texture::Texture(int bufferSize, void* buffer, const char* texType, GLuint slot)
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void Texture::texUnit(Shader& shader, const char* uniform, GLuint unit)
+void Texture::texUnit(std::shared_ptr<Shader> shader, const char* uniform, GLuint unit)
 {
 	// Gets the location of the uniform
-	GLuint texUni = glGetUniformLocation(shader.mId, uniform);
+	GLuint texUni = glGetUniformLocation(shader->mId, uniform);
 	// Shader needs to be activated before changing the value of a uniform
-	shader.activate();
+	shader->activate();
 	// Sets the value of the uniform
 	glUniform1i(texUni, unit);
 }

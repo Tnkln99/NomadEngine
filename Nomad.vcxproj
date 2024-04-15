@@ -150,6 +150,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Animator.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="StaticModel.cpp" />
     <ClCompile Include="Bone.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Animator.h" />
     <ClInclude Include="AssimpGLMHelpers.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="StaticModel.h" />
     <ClInclude Include="Bone.h" />
     <ClInclude Include="Camera.h" />

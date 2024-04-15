@@ -7,6 +7,7 @@
 class Light
 {
 public:
+	Light();
 	~Light();
 	glm::vec4 mLightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 	glm::vec3 mLightPos = glm::vec3(.0f, 200.0f, 30);
@@ -43,7 +44,7 @@ public:
 		4, 6, 7
 	};
 	
-	Shader mLightIndicatorShader{ "Light.vert", "Light.frag" };
+	std::shared_ptr<Shader> mLightIndicatorShader{};
 	void drawIndicator(Camera & camera);
 };
 

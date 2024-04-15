@@ -18,5 +18,5 @@ public:
 	SkeletalMesh(std::vector <Vertex>& vertices, std::vector <GLuint>& indices, std::vector <Texture>& textures);
 
 	// Draws the mesh
-	void draw(Shader& shader);
+	void draw(std::shared_ptr<Shader> shader);
 };

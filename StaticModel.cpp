@@ -1,6 +1,13 @@
 #include "StaticModel.h"
+#include "ResourceManager.h"
+
 
 #include <assimp/postprocess.h>
+
+StaticModel::StaticModel()
+{
+    mShader = ResourceManager::getLoadedShader("StaticModel");
+}
 
 StaticModel::~StaticModel()
 {
@@ -26,16 +33,16 @@ void StaticModel::loadModel(const std::string& fileName)
 
 void StaticModel::draw(Camera& camera, const Light& light)
 {
-    shader.activate();
-    glUniformMatrix4fv(glGetUniformLocation(shader.mId, "model"), 1, GL_FALSE, glm::value_ptr(mModelMatrix));
-    glUniform4f(glGetUniformLocation(shader.mId, "lightColor"), light.mLightColor.x, light.mLightColor.y, light.mLightColor.z, light.mLightColor.w);
-    glUniform3f(glGetUniformLocation(shader.mId, "lightPos"), light.mLightPos.x, light.mLightPos.y, light.mLightPos.z);
+    mShader->activate();
+    glUniformMatrix4fv(glGetUniformLocation(mShader->mId, "model"), 1, GL_FALSE, glm::value_ptr(mModelMatrix));
+    glUniform4f(glGetUniformLocation(mShader->mId, "lightColor"), light.mLightColor.x, light.mLightColor.y, light.mLightColor.z, light.mLightColor.w);
+    glUniform3f(glGetUniformLocation(mShader->mId, "lightPos"), light.mLightPos.x, light.mLightPos.y, light.mLightPos.z);
     // Take care of the camera Matrix
-    glUniform3f(glGetUniformLocation(shader.mId, "camPos"), camera.mPosition.x, camera.mPosition.y, camera.mPosition.z);
-    camera.matrix(shader);
+    glUniform3f(glGetUniformLocation(mShader->mId, "camPos"), camera.mPosition.x, camera.mPosition.y, camera.mPosition.z);
+    camera.matrix(mShader);
 	for(auto & mesh : mMeshes)
 	{
-		mesh.draw(shader);
+		mesh.draw(mShader);
 	}
 }
 

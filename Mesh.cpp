@@ -21,7 +21,7 @@ Mesh::Mesh(std::vector<Vertex>& vertices, std::vector <GLuint>& indices, std::ve
 }
 
 
-void Mesh::draw(Shader& shader)
+void Mesh::draw(std::shared_ptr<Shader> shader)
 {
 	mVao.bind();
 

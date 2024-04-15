@@ -1,6 +1,7 @@
 
 #include"StaticModel.h"
 #include"Animator.h"
+#include"ResourceManager.h"
 
 const unsigned int width = 800;
 const unsigned int height = 800;
@@ -37,6 +38,10 @@ int main()
 	// In this case the viewport goes from x = 0, y = 0, to x = 800, y = 800
 	glViewport(0, 0, width, height);
 
+	ResourceManager::loadShader("lightIndicator", "Light.vert", "Light.frag");
+	ResourceManager::loadShader("SkeletalModel", "SkeletalModel.vert", "SkeletalModel.frag");
+	ResourceManager::loadShader("StaticModel", "StaticModel.vert", "StaticModel.frag");
+
 	Light light{};
 	light.loadLightIndicator();
 
@@ -66,11 +71,24 @@ int main()
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
+	int debugBoneIndex = 2;
+	float lastIndexChangeTimer = glfwGetTime();
+
 	while (!glfwWindowShouldClose(window))
 	{
 		float currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
+		if(glfwGetKey(window, 32) && (glfwGetTime() - lastIndexChangeTimer) > 1.0f  )
+		{
+			debugBoneIndex++;
+			if(skeletalModel.getBoneCount() < debugBoneIndex)
+			{
+				debugBoneIndex = 0;
+			}
+			lastIndexChangeTimer = glfwGetTime();
+		}
+		
 
 		// Specify the color of the background
 		glClearColor(0.02f, 0.11f, 0.1f, 1.0f);
@@ -86,7 +104,7 @@ int main()
 
 
 		// Draws different meshes
-		skeletalModel.draw(camera, light, transforms);
+		skeletalModel.draw(camera, light, transforms, debugBoneIndex);
 		//model.draw(camera, light);
 
 		light.drawIndicator(camera);

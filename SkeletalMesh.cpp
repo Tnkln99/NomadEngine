@@ -26,7 +26,7 @@ SkeletalMesh::SkeletalMesh(std::vector<Vertex>& vertices, std::vector<GLuint>& i
 	EBO.unbind();
 }
 
-void SkeletalMesh::draw(Shader& shader)
+void SkeletalMesh::draw(std::shared_ptr<Shader> shader)
 {
 	mVao.bind();
 
@@ -37,7 +37,7 @@ void SkeletalMesh::draw(Shader& shader)
 	for (unsigned int i = 0; i < mTextures.size(); i++)
 	{
 		std::string num;
-		std::string type = mTextures[i].type;
+		std::string type = mTextures[i].mType;
 		if (type == "diffuse")
 		{
 			num = std::to_string(numDiffuse++);
