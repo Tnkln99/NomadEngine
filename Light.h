@@ -10,7 +10,7 @@ public:
 	Light();
 	~Light();
 	glm::vec4 mLightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-	glm::vec3 mLightPos = glm::vec3(.0f, 200.0f, 30);
+	glm::vec3 mLightPos = glm::vec3(.0f, 200.0f, 100);
 	glm::mat4 mLightModel = glm::mat4(1.0f);
 
 
