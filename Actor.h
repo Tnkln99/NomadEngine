@@ -34,7 +34,7 @@ public:
         return nullptr;
     }
     
-
+    void init();
     void update();
 private:
     std::vector<std::shared_ptr<IComponent>> mComponents;

@@ -126,6 +126,9 @@
     <ClCompile Include="StaticModelComponent.cpp">
       <Filter>Source Files\Graphics\Components</Filter>
     </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>Source Files\Graphics\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -186,6 +189,9 @@
       <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="StaticModelComponent.h">
+      <Filter>Header Files\Graphics\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraComponent.h">
       <Filter>Header Files\Graphics\Components</Filter>
     </ClInclude>
   </ItemGroup>

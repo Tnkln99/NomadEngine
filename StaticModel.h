@@ -13,15 +13,9 @@ public:
 	StaticModel();
 	~StaticModel();
 
-	glm::vec3 mPosition{ 0.0f };
-	glm::vec3 mScale{ 1.0f };
-	glm::vec3 mRotation{ 1.0f };
-
-	glm::mat4 mModelMatrix{ 1.0f };
-
 	void loadModel(const std::string& fileName);
 
-	void draw(Camera& camera, const Light& light);
+	void draw(const Camera& camera, const Light& light, const glm::mat4 modelMatrix);
 private:
 	std::shared_ptr<Shader> mShader{};
 	struct TextureLoaded

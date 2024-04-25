@@ -49,7 +49,7 @@ int main()
 	light.loadLightIndicator();
 
 	// Creates camera object
-	Camera camera(width, height, glm::vec3(0, 120, 300));
+	Camera camera(width, height, glm::vec3(0, 0, 300));
 
 	//SkeletalModel skeletalModel{};
 	//skeletalModel.loadModel("Forgotten.FBX");
@@ -60,8 +60,9 @@ int main()
 	//skeletalModel.mModelMatrix = glm::rotate(skeletalModel.mModelMatrix, angle, axis);
 
 	Actor staticModelActor{};
-	auto compStaticModel = staticModelActor.addComponent<StaticModelComponent>(camera, light );
-	compStaticModel->mStaticModel = ResourceManager::getStaticModel("Bob");
+	staticModelActor.mTransform.mPos = glm::vec4{ 0 };
+	auto staticModelComp = staticModelActor.addComponent<StaticModelComponent>(camera, light );
+	staticModelComp->mStaticModel = ResourceManager::getStaticModel("Bob");
 
 
 	// Enables the Depth Buffer
@@ -75,6 +76,7 @@ int main()
 	int debugBoneIndex = 2;
 	float lastIndexChangeTimer = glfwGetTime();
 
+	staticModelActor.init();
 	while (!glfwWindowShouldClose(window))
 	{
 		float currentFrame = glfwGetTime();
@@ -90,16 +92,16 @@ int main()
 		//	}
 		//	lastIndexChangeTimer = glfwGetTime();
 		//}
+
+		// camera.inputs(window);
+		camera.updateMatrix(45.0f, 0.1f, 1000.0f);
+
 		
 
 		// Specify the color of the background
 		glClearColor(0.02f, 0.11f, 0.1f, 1.0f);
 		// Clean the back buffer and depth buffer
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-
-		camera.inputs(window);
-		camera.updateMatrix(45.0f, 0.1f, 1000.0f);
 
 		//animator.updateAnimation(deltaTime);
 		//auto transforms = animator.getFinalBoneMatrices();

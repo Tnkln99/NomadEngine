@@ -16,8 +16,6 @@ StaticModel::~StaticModel()
 
 void StaticModel::loadModel(const std::string& fileName)
 {
-    mModelMatrix = glm::translate(mModelMatrix, mPosition);
-    
 	mScene = mImporter.ReadFile(fileName.c_str(), aiProcess_Triangulate /*aiProcess_FlipUVs*/ | aiProcess_GenSmoothNormals | aiProcess_JoinIdenticalVertices);
     
 	if(mScene)
@@ -31,10 +29,10 @@ void StaticModel::loadModel(const std::string& fileName)
 	}
 }
 
-void StaticModel::draw(Camera& camera, const Light& light)
+void StaticModel::draw(const Camera& camera, const Light& light, const glm::mat4 modelMatrix)
 {
     mShader->activate();
-    glUniformMatrix4fv(glGetUniformLocation(mShader->mId, "model"), 1, GL_FALSE, glm::value_ptr(mModelMatrix));
+    glUniformMatrix4fv(glGetUniformLocation(mShader->mId, "model"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glUniform4f(glGetUniformLocation(mShader->mId, "lightColor"), light.mLightColor.x, light.mLightColor.y, light.mLightColor.z, light.mLightColor.w);
     glUniform3f(glGetUniformLocation(mShader->mId, "lightPos"), light.mLightPos.x, light.mLightPos.y, light.mLightPos.z);
     // Take care of the camera Matrix

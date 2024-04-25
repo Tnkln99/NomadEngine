@@ -1,5 +1,6 @@
 #include "StaticModelComponent.h"
 #include "ResourceManager.h"
+#include "Actor.h"
 
 StaticModelComponent::StaticModelComponent(Camera& camera, Light& light) : mCamera{camera}, mLight{light}
 {
@@ -8,7 +9,8 @@ StaticModelComponent::StaticModelComponent(Camera& camera, Light& light) : mCame
 
 void StaticModelComponent::update()
 {
-	mStaticModel->draw(mCamera, mLight);
+	if(mStaticModel)
+		mStaticModel->draw(mCamera, mLight, mOwner->mTransform.getModelMatrix());
 }
 
 void StaticModelComponent::init()
