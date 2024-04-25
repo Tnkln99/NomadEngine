@@ -1,5 +1,6 @@
 
-#include"StaticModel.h"
+#include"StaticModelComponent.h"
+#include "Actor.h"
 #include"Animator.h"
 #include"ResourceManager.h"
 
@@ -42,25 +43,25 @@ int main()
 	ResourceManager::loadShader("SkeletalModel", "SkeletalModel.vert", "SkeletalModel.frag");
 	ResourceManager::loadShader("StaticModel", "StaticModel.vert", "StaticModel.frag");
 
+	ResourceManager::loadStaticModel("Bob", "boblampclean.md5mesh");
+
 	Light light{};
 	light.loadLightIndicator();
 
 	// Creates camera object
 	Camera camera(width, height, glm::vec3(0, 120, 300));
 
-	SkeletalModel skeletalModel{};
-	skeletalModel.loadModel("Forgotten.FBX");
-	Animation animation("ForgottenWalk.FBX", &skeletalModel);
-	Animator animator(&animation);
+	//SkeletalModel skeletalModel{};
+	//skeletalModel.loadModel("Forgotten.FBX");
+	//Animation animation("ForgottenWalk.FBX", &skeletalModel);
+	//Animator animator(&animation);
 
-	float angle = glm::radians(270.0f);
-	glm::vec3 axis(1, 0, 0); // Y-axis
-	skeletalModel.mModelMatrix = glm::rotate(skeletalModel.mModelMatrix, angle, axis);
+	//float angle = glm::radians(270.0f);
+	//skeletalModel.mModelMatrix = glm::rotate(skeletalModel.mModelMatrix, angle, axis);
 
-	StaticModel model{};
-	model.loadModel("boblampclean.md5mesh");
-	float angle2 = glm::radians(-45.0f);
-	model.mModelMatrix = glm::rotate(model.mModelMatrix, angle2, axis);
+	Actor staticModelActor{};
+	auto compStaticModel = staticModelActor.addComponent<StaticModelComponent>(camera, light );
+	compStaticModel->mStaticModel = ResourceManager::getStaticModel("Bob");
 
 
 	// Enables the Depth Buffer
@@ -80,15 +81,15 @@ int main()
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
 		// 32 is integer for spacebar
-		if(glfwGetKey(window, 32) && (glfwGetTime() - lastIndexChangeTimer) > 1.0f  )
-		{
-			debugBoneIndex++;
-			if(skeletalModel.getBoneCount() < debugBoneIndex)
-			{
-				debugBoneIndex = 0;
-			}
-			lastIndexChangeTimer = glfwGetTime();
-		}
+		//if(glfwGetKey(window, 32) && (glfwGetTime() - lastIndexChangeTimer) > 1.0f  )
+		//{
+		//	debugBoneIndex++;
+		//	if(skeletalModel.getBoneCount() < debugBoneIndex)
+		//	{
+		//		debugBoneIndex = 0;
+		//	}
+		//	lastIndexChangeTimer = glfwGetTime();
+		//}
 		
 
 		// Specify the color of the background
@@ -100,13 +101,14 @@ int main()
 		camera.inputs(window);
 		camera.updateMatrix(45.0f, 0.1f, 1000.0f);
 
-		animator.updateAnimation(deltaTime);
-		auto transforms = animator.getFinalBoneMatrices();
-
+		//animator.updateAnimation(deltaTime);
+		//auto transforms = animator.getFinalBoneMatrices();
+		staticModelActor.update();
 
 		// Draws different meshes
-		skeletalModel.draw(camera, light, transforms, debugBoneIndex);
-		//model.draw(camera, light);
+		//skeletalModel.draw(camera, light, transforms, debugBoneIndex);
+		//model->draw(camera, light);
+
 
 		light.drawIndicator(camera);
 

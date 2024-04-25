@@ -19,5 +19,5 @@ public:
 	Mesh(std::vector <Vertex>& vertices, std::vector <GLuint>& indices, std::vector <Texture>& textures);
 
 	// Draws the mesh
-	virtual void draw(std::shared_ptr<Shader> shader);
+	void draw(std::shared_ptr<Shader> shader);
 };
