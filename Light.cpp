@@ -39,7 +39,7 @@ void Light::drawIndicator(Camera& camera)
 
 	glUniformMatrix4fv(glGetUniformLocation(mLightIndicatorShader->mId, "model"), 1, GL_FALSE, glm::value_ptr(mLightModel));
 	glUniform4f(glGetUniformLocation(mLightIndicatorShader->mId, "lightColor"), mLightColor.x, mLightColor.y, mLightColor.z, mLightColor.w);
-	camera.matrix(mLightIndicatorShader);
+	camera.sendCameraInfoToGpu(mLightIndicatorShader);
 
 	mVao.bind();
 

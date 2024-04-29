@@ -37,7 +37,7 @@ void StaticModel::draw(const Camera& camera, const Light& light, const glm::mat4
     glUniform3f(glGetUniformLocation(mShader->mId, "lightPos"), light.mLightPos.x, light.mLightPos.y, light.mLightPos.z);
     // Take care of the camera Matrix
     glUniform3f(glGetUniformLocation(mShader->mId, "camPos"), camera.mPosition.x, camera.mPosition.y, camera.mPosition.z);
-    camera.matrix(mShader);
+    camera.sendCameraInfoToGpu(mShader);
 	for(auto & mesh : mMeshes)
 	{
 		mesh.draw(mShader);

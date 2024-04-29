@@ -52,7 +52,7 @@ void SkeletalModel::draw(Camera& camera, const Light& light,
         glUniformMatrix4fv(glGetUniformLocation(mShader->mId, name.c_str()), 1, GL_FALSE, glm::value_ptr(finalBoneMatrices[i]));
     }
 
-	camera.matrix(mShader);
+	camera.sendCameraInfoToGpu(mShader);
 	for (auto& mesh : mMeshes)
 	{
 		mesh.draw(mShader);
