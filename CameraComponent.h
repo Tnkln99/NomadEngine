@@ -6,13 +6,16 @@
 
 class CameraComponent : public IComponent
 {
+public:
 	CameraComponent();
 	// Inherited via IComponent
 	virtual void update() override;
 	virtual void init() override;
 
-	bool mIsMain;
+	const std::shared_ptr<Camera> getCamera() {
+		return mCamera;
+	}
 private:
-	Camera mCamera{};
+	std::shared_ptr<Camera> mCamera{};
 };
 

@@ -46,6 +46,8 @@ public:
 	
 	std::shared_ptr<Shader> mLightIndicatorShader{};
 	void drawIndicator(Camera & camera);
+
+	void sendLightInfoToShader(std::shared_ptr<Shader> shader, Transform transform) const;
 };
 
 #endif

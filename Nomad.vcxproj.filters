@@ -138,6 +138,9 @@
     <ClCompile Include="Locator.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="LightComponent.cpp">
+      <Filter>Source Files\Graphics\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -211,6 +214,9 @@
     </ClInclude>
     <ClInclude Include="Locator.h">
       <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="LightComponent.h">
+      <Filter>Header Files\Graphics\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

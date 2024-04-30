@@ -157,6 +157,7 @@
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="IComponent.cpp" />
+    <ClCompile Include="LightComponent.cpp" />
     <ClCompile Include="Locator.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="AssimpGLMHelpers.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="IComponent.h" />
+    <ClInclude Include="LightComponent.h" />
     <ClInclude Include="Locator.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResourceManager.h" />

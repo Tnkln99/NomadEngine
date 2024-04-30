@@ -15,8 +15,11 @@ public:
 
 	void loadModel(const std::string& fileName);
 
-	void draw(const std::shared_ptr<Camera> camera, const std::shared_ptr<Light> light, 
-		const glm::mat4 modelMatrix);
+	void draw(const glm::mat4 modelMatrix);
+
+	std::shared_ptr<Shader> getShader() {
+		return mShader;
+	}
 private:
 	std::shared_ptr<Shader> mShader{};
 	struct TextureLoaded

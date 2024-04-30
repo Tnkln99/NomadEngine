@@ -1,6 +1,5 @@
 #include"StaticModelComponent.h"
 #include "Actor.h"
-#include"Animator.h"
 #include"ResourceManager.h"
 #include "Locator.h"
 #include "Window.h"
@@ -12,18 +11,11 @@ const unsigned int height = 800;
 int main()
 {
 	Window window{ "Nomad" };
-
 	ResourceManager::loadShader("lightIndicator", "Light.vert", "Light.frag");
 	ResourceManager::loadShader("SkeletalModel", "SkeletalModel.vert", "SkeletalModel.frag");
 	ResourceManager::loadShader("StaticModel", "StaticModel.vert", "StaticModel.frag");
 
 	ResourceManager::loadStaticModel("Bob", "boblampclean.md5mesh");
-
-	Light light{};
-	light.loadLightIndicator();
-
-	// Creates camera object
-	Camera camera(width, height, glm::vec3(0, 0, 300));
 
 	//SkeletalModel skeletalModel{};
 	//skeletalModel.loadModel("Forgotten.FBX");
@@ -33,16 +25,23 @@ int main()
 	//float angle = glm::radians(270.0f);
 	//skeletalModel.mModelMatrix = glm::rotate(skeletalModel.mModelMatrix, angle, axis);
 
+	Renderer renderer;
+	renderer.registerWindow(std::make_shared<Window>(window));
+	Locator::registerRenderer(std::make_shared<Renderer>(renderer));
+
+
 	Actor staticModelActor{};
 	staticModelActor.mTransform.mPos = glm::vec4{ 0 };
-	auto staticModelComp = staticModelActor.addComponent<StaticModelComponent>(camera, light );
+	auto staticModelComp = staticModelActor.addComponent<StaticModelComponent>();
 	staticModelComp->mStaticModel = ResourceManager::getStaticModel("Bob");
 
-	Renderer renderer;
-	renderer.registerLight(std::make_shared<Light>(light));
-	renderer.registerCamera(std::make_shared<Camera>(camera));
+	Actor lightActor{};
+	lightActor.mTransform.mPos = glm::vec4{ 0 ,  1 , 0 , 1 };
+	auto lightComp = lightActor.addComponent<LightComponent>();
 
-	Locator::registerRenderer(std::make_shared<Renderer>(renderer));
+	Actor cameraActor{};
+	cameraActor.mTransform.mPos = glm::vec4{ 0 ,  0 , 300 , 1 };
+	auto cameraComp = cameraActor.addComponent<CameraComponent>();
 
 	float deltaTime = 0.0f;
 	float lastFrame = 0.0f;
@@ -79,13 +78,12 @@ int main()
 		//animator.updateAnimation(deltaTime);
 		//auto transforms = animator.getFinalBoneMatrices();
 		staticModelActor.update();
+		cameraActor.update();
+		lightActor.update();
 
 		// Draws different meshes
 		//skeletalModel.draw(camera, light, transforms, debugBoneIndex);
 		//model->draw(camera, light);
-
-
-		light.drawIndicator(camera);
 
 
 		window.swapBuffers();

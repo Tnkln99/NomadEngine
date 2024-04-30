@@ -2,25 +2,20 @@
 
 
 
-Camera::Camera(int width, int height, glm::vec3 position)
+Camera::Camera()
 {
-	Camera::mWidth = width;
-	Camera::mHeight = height;
-	mPosition = position;
 }
 
-void Camera::updateMatrix(float FOVdeg, float nearPlane, float farPlane)
+void Camera::updateMatrix(float FOVdeg, float nearPlane, float farPlane,
+	const std::shared_ptr<Window> window, Transform transform)
 {
 	// Makes camera look in the right direction from the right position
-	mView = glm::lookAt(mPosition, mPosition + mOrientation, mUp);
+	mView = glm::lookAt(transform.mPos, transform.mPos + transform.mEulerRot, transform.mUp);
 	// Adds perspective to the scene
 	mProjection = glm::perspective(glm::radians(FOVdeg), (float)mWidth / mHeight, nearPlane, farPlane);
-
-	// Sets new camera matrix
-	mCameraMatrix = mProjection * mView;
 }
 
-void Camera::sendCameraInfoToGpu(std::shared_ptr<Shader> shader) const
+void Camera::sendCameraInfoToGpu(std::shared_ptr<Shader> shader, Transform transform) const
 {
 	// Exports camera matrix
 	glUniformMatrix4fv(glGetUniformLocation(shader->mId, "projection"), 1, GL_FALSE, glm::value_ptr(mProjection));

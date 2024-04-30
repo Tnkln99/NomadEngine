@@ -1,4 +1,5 @@
 #include "Window.h"
+#include "Locator.h"
 
 Window::Window(const std::string& name)
 {

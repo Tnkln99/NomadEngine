@@ -29,16 +29,9 @@ void StaticModel::loadModel(const std::string& fileName)
 	}
 }
 
-void StaticModel::draw(const std::shared_ptr<Camera> camera, const std::shared_ptr<Light> light, 
-    const glm::mat4 modelMatrix)
+void StaticModel::draw(const glm::mat4 modelMatrix)
 {
-    mShader->activate();
     glUniformMatrix4fv(glGetUniformLocation(mShader->mId, "model"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
-    glUniform4f(glGetUniformLocation(mShader->mId, "lightColor"), light->mLightColor.x, light->mLightColor.y, light->mLightColor.z, light->mLightColor.w);
-    glUniform3f(glGetUniformLocation(mShader->mId, "lightPos"), light->mLightPos.x, light->mLightPos.y, light->mLightPos.z);
-    // Take care of the camera Matrix
-    glUniform3f(glGetUniformLocation(mShader->mId, "camPos"), camera->mPosition.x, camera->mPosition.y, camera->mPosition.z);
-    camera->sendCameraInfoToGpu(mShader);
 	for(auto & mesh : mMeshes)
 	{
 		mesh.draw(mShader);

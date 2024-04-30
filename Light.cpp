@@ -39,7 +39,7 @@ void Light::drawIndicator(Camera& camera)
 
 	glUniformMatrix4fv(glGetUniformLocation(mLightIndicatorShader->mId, "model"), 1, GL_FALSE, glm::value_ptr(mLightModel));
 	glUniform4f(glGetUniformLocation(mLightIndicatorShader->mId, "lightColor"), mLightColor.x, mLightColor.y, mLightColor.z, mLightColor.w);
-	camera.sendCameraInfoToGpu(mLightIndicatorShader);
+	//camera.sendCameraInfoToGpu(mLightIndicatorShader);
 
 	mVao.bind();
 
@@ -47,4 +47,10 @@ void Light::drawIndicator(Camera& camera)
 
 
 	mVao.unbind();
+}
+
+void Light::sendLightInfoToShader(std::shared_ptr<Shader> shader, Transform transform) const
+{
+	glUniform4f(glGetUniformLocation(shader->mId, "lightColor"), mLightColor.x, mLightColor.y, mLightColor.z, mLightColor.w);
+	glUniform3f(glGetUniformLocation(shader->mId, "lightPos"), transform.mPos.x,transform.mPos.y, transform.mPos.z);
 }

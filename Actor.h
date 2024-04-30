@@ -16,7 +16,7 @@ public:
     template<component T, typename... Args>
     std::shared_ptr<T> addComponent(Args&&... args) {
         auto comp = std::make_shared<T>(std::forward<Args>(args)...);
-        mComponents.push_back(comp);
+        mComponents.emplace_back(comp);
         mComponents.back()->mOwner = this;
         return comp;
     }

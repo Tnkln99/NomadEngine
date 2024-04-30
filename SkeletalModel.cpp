@@ -36,11 +36,6 @@ void SkeletalModel::draw(Camera& camera, const Light& light,
 {
 	mShader->activate();
     glUniformMatrix4fv(glGetUniformLocation(mShader->mId, "model"), 1, GL_FALSE, glm::value_ptr(mModelMatrix));
-	glUniform4f(glGetUniformLocation(mShader->mId, "lightColor"), light.mLightColor.x, light.mLightColor.y, light.mLightColor.z, light.mLightColor.w);
-	glUniform3f(glGetUniformLocation(mShader->mId, "lightPos"), light.mLightPos.x, light.mLightPos.y, light.mLightPos.z);
-	// Take care of the camera Matrix
-	glUniform3f(glGetUniformLocation(mShader->mId, "camPos"), camera.mPosition.x, camera.mPosition.y, camera.mPosition.z);
-
     // to show skinning
     glUniform1i(glGetUniformLocation(mShader->mId, "debugOpen"), 1);
     // bone to show the skinning
@@ -52,7 +47,6 @@ void SkeletalModel::draw(Camera& camera, const Light& light,
         glUniformMatrix4fv(glGetUniformLocation(mShader->mId, name.c_str()), 1, GL_FALSE, glm::value_ptr(finalBoneMatrices[i]));
     }
 
-	camera.sendCameraInfoToGpu(mShader);
 	for (auto& mesh : mMeshes)
 	{
 		mesh.draw(mShader);
