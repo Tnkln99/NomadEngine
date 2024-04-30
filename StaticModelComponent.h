@@ -8,13 +8,11 @@
 class StaticModelComponent : public IComponent
 {
 public:
-	StaticModelComponent(Camera& camera, Light& light);
+	StaticModelComponent();
 	std::shared_ptr<StaticModel> mStaticModel;
 	// Inherited via IComponent
 	virtual void update() override;
 	virtual void init() override;
 private:
-	Camera& mCamera;
-	Light& mLight;
 };
 

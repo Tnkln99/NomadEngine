@@ -2,6 +2,7 @@
 #include "Actor.h"
 #include"Animator.h"
 #include"ResourceManager.h"
+#include "Locator.h"
 #include "Window.h"
 
 const unsigned int width = 800;
@@ -37,8 +38,11 @@ int main()
 	auto staticModelComp = staticModelActor.addComponent<StaticModelComponent>(camera, light );
 	staticModelComp->mStaticModel = ResourceManager::getStaticModel("Bob");
 
+	Renderer renderer;
+	renderer.registerLight(std::make_shared<Light>(light));
+	renderer.registerCamera(std::make_shared<Camera>(camera));
 
-
+	Locator::registerRenderer(std::make_shared<Renderer>(renderer));
 
 	float deltaTime = 0.0f;
 	float lastFrame = 0.0f;
@@ -66,7 +70,7 @@ int main()
 		//}
 
 		// camera.inputs(window);
-		camera.updateMatrix(45.0f, 0.1f, 1000.0f);
+		// camera.updateMatrix(45.0f, 0.1f, 1000.0f);
 
 		
 

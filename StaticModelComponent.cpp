@@ -1,16 +1,16 @@
 #include "StaticModelComponent.h"
 #include "ResourceManager.h"
 #include "Actor.h"
+#include "Locator.h"
 
-StaticModelComponent::StaticModelComponent(Camera& camera, Light& light) : mCamera{camera}, mLight{light}
+StaticModelComponent::StaticModelComponent()
 {
-	
 }
 
 void StaticModelComponent::update()
 {
-	if(mStaticModel)
-		mStaticModel->draw(mCamera, mLight, mOwner->mTransform.getModelMatrix());
+	if (mStaticModel)
+		Locator::getRendererService()->render(mStaticModel, mOwner->mTransform.getModelMatrix());
 }
 
 void StaticModelComponent::init()

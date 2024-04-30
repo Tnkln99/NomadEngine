@@ -157,6 +157,8 @@
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="IComponent.cpp" />
+    <ClCompile Include="Locator.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="StaticModel.cpp" />
     <ClCompile Include="Bone.cpp" />
@@ -184,6 +186,8 @@
     <ClInclude Include="AssimpGLMHelpers.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="IComponent.h" />
+    <ClInclude Include="Locator.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="StaticModel.h" />
     <ClInclude Include="Bone.h" />

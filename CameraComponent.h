@@ -6,12 +6,13 @@
 
 class CameraComponent : public IComponent
 {
+	CameraComponent();
 	// Inherited via IComponent
 	virtual void update() override;
 	virtual void init() override;
 
 	bool mIsMain;
 private:
-	Camera& mCamera;
+	Camera mCamera{};
 };
 
