@@ -9,10 +9,18 @@ StaticModelComponent::StaticModelComponent()
 
 void StaticModelComponent::update()
 {
-	if (mStaticModel)
-		Locator::getRendererService()->render(mStaticModel, mOwner->mTransform.getModelMatrix());
+	
 }
 
 void StaticModelComponent::init()
 {
+	for(auto& comp : mOwner->mComponents)
+	{
+		if(comp.get() == this)
+		{
+			std::shared_ptr<StaticModelComponent> result = std::dynamic_pointer_cast<StaticModelComponent>(comp);
+			std::cout << comp.get() << " " << this;
+			Locator::getRendererService()->registerStaticModel(result);
+		}
+	}
 }

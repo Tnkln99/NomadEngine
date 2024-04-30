@@ -13,13 +13,14 @@ class Actor
 {
 public:
     Transform mTransform{};
+    std::vector<std::shared_ptr<IComponent>> mComponents;
 
     template<component T, typename... Args>
     std::shared_ptr<T> addComponent(Args&&... args) {
         auto comp = std::make_shared<T>(std::forward<Args>(args)...);
         mComponents.emplace_back(comp);
         comp->mOwner = this;
-        std::cout << comp->mOwner->mTransform.mPos.y << std::endl;
+        std::cout << comp.get() << std::endl;
         return comp;
     }
 
@@ -37,8 +38,7 @@ public:
     }
     
     void init();
-    void update();
+	void update();
 private:
-    std::vector<std::shared_ptr<IComponent>> mComponents;
 };
 

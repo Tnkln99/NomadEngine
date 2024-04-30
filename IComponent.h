@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 class Actor;
 
 class IComponent

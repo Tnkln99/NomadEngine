@@ -31,23 +31,20 @@ int main()
 
 
 	Actor staticModelActor{};
-	staticModelActor.mTransform.mPos = glm::vec4{ 1 };
+	staticModelActor.mTransform.mPos = glm::vec4{ 0};
+	staticModelActor.mTransform.mEulerRot = glm::vec4{ -45, 0, 0, 0 };
 	auto staticModelComp = staticModelActor.addComponent<StaticModelComponent>();
 	staticModelComp->mStaticModel = ResourceManager::getStaticModel("Bob");
-	std::cout << staticModelComp->mOwner->mTransform.mPos.y << std::endl;
+	
 
 	Actor lightActor{};
-	lightActor.mTransform.mPos = glm::vec4{ 0 ,  50 , 0 , 1 };
+	lightActor.mTransform.mPos = glm::vec4{ 0 ,  100 , 20 , 1 };
 	//std::cout << lightActor.mTransform.mPos.y << std::endl;
 	auto lightComp = lightActor.addComponent<LightComponent>();
-	Locator::getRendererService()->registerLight(lightComp);
-	std::cout << lightComp->mOwner->mTransform.mPos.y << std::endl;
 
 	Actor cameraActor{};
-	cameraActor.mTransform.mPos = glm::vec4{ 0 ,  0 , 300 , 1 };
+	cameraActor.mTransform.mPos = glm::vec4{ 0 ,  50 , 300 , 1 };
 	auto cameraComp = cameraActor.addComponent<CameraComponent>();
-	Locator::getRendererService()->registerCamera(cameraComp);
-	std::cout << cameraComp->mOwner->mTransform.mPos.y << std::endl;
 
 
 	float deltaTime = 0.0f;
@@ -55,39 +52,30 @@ int main()
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-	int debugBoneIndex = 2;
-	float lastIndexChangeTimer = glfwGetTime();
 
 	staticModelActor.init();
+	lightActor.init();
+	cameraActor.init();
+
 	while (!window.shouldCloseWindow())
 	{
 		float currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
 
-		// 32 is integer for spacebar
-		//if(glfwGetKey(window, 32) && (glfwGetTime() - lastIndexChangeTimer) > 1.0f  )
-		//{
-		//	debugBoneIndex++;
-		//	if(skeletalModel.getBoneCount() < debugBoneIndex)
-		//	{
-		//		debugBoneIndex = 0;
-		//	}
-		//	lastIndexChangeTimer = glfwGetTime();
-		//}
-
-		// camera.inputs(window);
-		// camera.updateMatrix(45.0f, 0.1f, 1000.0f);
-
 		window.clear();
 
-		//animator.updateAnimation(deltaTime);
-		//auto transforms = animator.getFinalBoneMatrices();
+		
 		staticModelActor.update();
 		cameraActor.update();
 		lightActor.update();
 
-		// Draws different meshes
+		Locator::getRendererService()->render();
+
+		//animator.updateAnimation(deltaTime);
+		//auto transforms = animator.getFinalBoneMatrices();
+
+		//Draws different meshes
 		//skeletalModel.draw(camera, light, transforms, debugBoneIndex);
 		//model->draw(camera, light);
 
