@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <memory>
+#include <iostream>
 
 template<typename T>
 concept component = std::is_base_of<IComponent, T>::value;
@@ -17,7 +18,8 @@ public:
     std::shared_ptr<T> addComponent(Args&&... args) {
         auto comp = std::make_shared<T>(std::forward<Args>(args)...);
         mComponents.emplace_back(comp);
-        mComponents.back()->mOwner = this;
+        comp->mOwner = this;
+        std::cout << comp->mOwner->mTransform.mPos.y << std::endl;
         return comp;
     }
 

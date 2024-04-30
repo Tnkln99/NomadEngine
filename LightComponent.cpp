@@ -4,7 +4,6 @@
 
 LightComponent::LightComponent()
 {
-	Locator::getRendererService()->registerLight(std::make_shared<LightComponent>(*this));
 	mLight = std::make_shared<Light>();
 }
 

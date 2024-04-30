@@ -31,17 +31,24 @@ int main()
 
 
 	Actor staticModelActor{};
-	staticModelActor.mTransform.mPos = glm::vec4{ 0 };
+	staticModelActor.mTransform.mPos = glm::vec4{ 1 };
 	auto staticModelComp = staticModelActor.addComponent<StaticModelComponent>();
 	staticModelComp->mStaticModel = ResourceManager::getStaticModel("Bob");
+	std::cout << staticModelComp->mOwner->mTransform.mPos.y << std::endl;
 
 	Actor lightActor{};
-	lightActor.mTransform.mPos = glm::vec4{ 0 ,  1 , 0 , 1 };
+	lightActor.mTransform.mPos = glm::vec4{ 0 ,  50 , 0 , 1 };
+	//std::cout << lightActor.mTransform.mPos.y << std::endl;
 	auto lightComp = lightActor.addComponent<LightComponent>();
+	Locator::getRendererService()->registerLight(lightComp);
+	std::cout << lightComp->mOwner->mTransform.mPos.y << std::endl;
 
 	Actor cameraActor{};
 	cameraActor.mTransform.mPos = glm::vec4{ 0 ,  0 , 300 , 1 };
 	auto cameraComp = cameraActor.addComponent<CameraComponent>();
+	Locator::getRendererService()->registerCamera(cameraComp);
+	std::cout << cameraComp->mOwner->mTransform.mPos.y << std::endl;
+
 
 	float deltaTime = 0.0f;
 	float lastFrame = 0.0f;
@@ -57,6 +64,7 @@ int main()
 		float currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
+
 		// 32 is integer for spacebar
 		//if(glfwGetKey(window, 32) && (glfwGetTime() - lastIndexChangeTimer) > 1.0f  )
 		//{
@@ -70,8 +78,6 @@ int main()
 
 		// camera.inputs(window);
 		// camera.updateMatrix(45.0f, 0.1f, 1000.0f);
-
-		
 
 		window.clear();
 

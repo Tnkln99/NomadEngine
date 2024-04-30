@@ -4,7 +4,6 @@
 
 CameraComponent::CameraComponent()
 {
-	Locator::getRendererService()->registerCamera(std::make_shared<CameraComponent>(*this));
 	mCamera = std::make_shared<Camera>();
 }
 

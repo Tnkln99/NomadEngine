@@ -12,12 +12,12 @@ void Renderer::render(const std::shared_ptr<StaticModel> staticModel, glm::mat4 
 
 void Renderer::registerCamera(std::shared_ptr<CameraComponent> camera)
 {
-	mCurrentCamera = camera;
+	mCurrentCamera = std::move(camera);
 }
 
 void Renderer::registerLight(std::shared_ptr<LightComponent> light)
 {
-	mLights.push_back(light);
+	mLights.emplace_back(light);
 }
 
 void Renderer::registerWindow(std::shared_ptr<Window> window)
