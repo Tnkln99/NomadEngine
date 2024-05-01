@@ -12,11 +12,14 @@ void Renderer::render() const
 		}
 		mCurrentCamera->getCamera()->updateMatrix(45.0f, 0.1f, 1000.0f, mWindow, mCurrentCamera->mOwner->mTransform);
 		const auto shader = staticModelComp->mStaticModel->getShader();
+		shader->activate();
 
 		mLights[0]->mLight->sendLightInfoToShader(shader, mLights[0]->mOwner->mTransform);
 		mCurrentCamera->getCamera()->sendCameraInfoToGpu(shader, mCurrentCamera->mOwner->mTransform);
 		staticModelComp->mStaticModel->draw(staticModelComp->mOwner->mTransform.getModelMatrix());
 	}
+
+	mLights[0]->mLight->drawIndicator(mCurrentCamera, mLights[0]->mOwner->mTransform.getModelMatrix());
 }
 
 void Renderer::registerCamera(const std::shared_ptr<CameraComponent> camera)

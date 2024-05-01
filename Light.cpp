@@ -3,6 +3,7 @@
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Actor.h"
 #include "EBO.h"
 #include "ResourceManager.h"
 
@@ -19,7 +20,6 @@ Light::~Light()
 
 void Light::loadLightIndicator()
 {
-	mLightModel = glm::translate(mLightModel, mLightPos);
 	mVao.bind();
 	// Generates Vertex Buffer Object and links it to vertices
 	Vbo VBO(mLightVertices);
@@ -33,18 +33,17 @@ void Light::loadLightIndicator()
 	EBO.unbind();
 }
 
-void Light::drawIndicator(Camera& camera)
+void Light::drawIndicator(const std::shared_ptr<CameraComponent>& cameraComp, const glm::mat4& modelMatrix)
 {
 	mLightIndicatorShader->activate();
 
-	glUniformMatrix4fv(glGetUniformLocation(mLightIndicatorShader->mId, "model"), 1, GL_FALSE, glm::value_ptr(mLightModel));
+	glUniformMatrix4fv(glGetUniformLocation(mLightIndicatorShader->mId, "model"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
 	glUniform4f(glGetUniformLocation(mLightIndicatorShader->mId, "lightColor"), mLightColor.x, mLightColor.y, mLightColor.z, mLightColor.w);
-	//camera.sendCameraInfoToGpu(mLightIndicatorShader);
+	cameraComp->getCamera()->sendCameraInfoToGpu(mLightIndicatorShader, cameraComp->mOwner->mTransform);
 
 	mVao.bind();
 
 	glDrawElements(GL_TRIANGLES, mLightIndices.size(), GL_UNSIGNED_INT, 0);
-
 
 	mVao.unbind();
 }

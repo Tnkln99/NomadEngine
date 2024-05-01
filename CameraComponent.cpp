@@ -9,7 +9,7 @@ CameraComponent::CameraComponent()
 
 void CameraComponent::update(float dt)
 {
-	
+		
 }
 
 void CameraComponent::init()

@@ -2,7 +2,7 @@
 #define LIGHT_CLASS_H
 #include "Shader.h"
 #include "VAO.h"
-#include "Camera.h"
+#include "CameraComponent.h"
 
 class Light
 {
@@ -10,8 +10,6 @@ public:
 	Light();
 	~Light();
 	glm::vec4 mLightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-	glm::vec3 mLightPos = glm::vec3(.0f, 200.0f, 100);
-	glm::mat4 mLightModel = glm::mat4(1.0f);
 
 
 	void loadLightIndicator();
@@ -45,7 +43,7 @@ public:
 	};
 	
 	std::shared_ptr<Shader> mLightIndicatorShader{};
-	void drawIndicator(Camera & camera);
+	void drawIndicator(const std::shared_ptr<CameraComponent>& cameraComp, const glm::mat4& modelMatrix);
 
 	void sendLightInfoToShader(std::shared_ptr<Shader> shader, Transform transform) const;
 };

@@ -4,9 +4,6 @@
 #include "Locator.h"
 #include "Window.h"
 
-const unsigned int width = 800;
-const unsigned int height = 800;
-
 
 int main()
 {
@@ -31,19 +28,25 @@ int main()
 
 
 	Actor staticModelActor{};
-	staticModelActor.mTransform.mPos = glm::vec4{ 0};
+	staticModelActor.mTransform.mPos = glm::vec4{ -20, 0 , 0, 0};
 	staticModelActor.mTransform.mEulerRot = glm::vec4{ -45, 0, 0, 0 };
 	auto staticModelComp = staticModelActor.addComponent<StaticModelComponent>();
 	staticModelComp->mStaticModel = ResourceManager::getStaticModel("Bob");
+
+	Actor staticModelActor2{};
+	staticModelActor2.mTransform.mPos = glm::vec4{ 20, 0 , 0, 0 };
+	staticModelActor2.mTransform.mEulerRot = glm::vec4{ -45, 0, 0, 0 };
+	auto staticModelComp2 = staticModelActor2.addComponent<StaticModelComponent>();
+	staticModelComp2->mStaticModel = ResourceManager::getStaticModel("Bob");
 	
 
 	Actor lightActor{};
-	lightActor.mTransform.mPos = glm::vec4{ 0 ,  100 , 20 , 1 };
+	lightActor.mTransform.mPos = glm::vec4{ 0 ,  50 , 50 , 1 };
 	//std::cout << lightActor.mTransform.mPos.y << std::endl;
 	auto lightComp = lightActor.addComponent<LightComponent>();
 
 	Actor cameraActor{};
-	cameraActor.mTransform.mPos = glm::vec4{ 0 ,  50 , 300 , 1 };
+	cameraActor.mTransform.mPos = glm::vec4{ 0 ,  50 , 200 , 1 };
 	auto cameraComp = cameraActor.addComponent<CameraComponent>();
 
 
@@ -62,6 +65,7 @@ int main()
 
 		
 		staticModelActor.update(deltaTime);
+		staticModelActor2.update(deltaTime);
 		cameraActor.update(deltaTime);
 		lightActor.update(deltaTime);
 
