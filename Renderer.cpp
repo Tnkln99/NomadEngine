@@ -22,20 +22,16 @@ void Renderer::render() const
 void Renderer::registerCamera(const std::shared_ptr<CameraComponent> camera)
 {
 	mCurrentCamera = camera;
-	std::cout << " " << camera.get() << " " << mCurrentCamera.get() << std::endl;
-
 }
 
 void Renderer::registerLight(const std::shared_ptr<LightComponent>& light)
 {
 	mLights.push_back(light);
-	std::cout << " " << light.get() << " " << mLights.back().get() << std::endl;
-
 }
 
 void Renderer::registerStaticModel(const std::shared_ptr<StaticModelComponent>& staticModel)
 {
-	std::cout << " " << staticModel.get() << std::endl;
+	std::cout << staticModel.get() << std::endl;
 	mStaticModels.push_back(staticModel);
 }
 

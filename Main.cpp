@@ -52,11 +52,6 @@ int main()
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-
-	staticModelActor.init();
-	lightActor.init();
-	cameraActor.init();
-
 	while (!window.shouldCloseWindow())
 	{
 		float currentFrame = glfwGetTime();
@@ -66,9 +61,9 @@ int main()
 		window.clear();
 
 		
-		staticModelActor.update();
-		cameraActor.update();
-		lightActor.update();
+		staticModelActor.update(deltaTime);
+		cameraActor.update(deltaTime);
+		lightActor.update(deltaTime);
 
 		Locator::getRendererService()->render();
 

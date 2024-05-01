@@ -7,19 +7,12 @@ LightComponent::LightComponent()
 	mLight = std::make_shared<Light>();
 }
 
-void LightComponent::update()
+void LightComponent::update(float dt)
 {
 }
 
 void LightComponent::init()
 {
-	for (auto& comp : mOwner->mComponents)
-	{
-		if (comp.get() == this)
-		{
-			const std::shared_ptr<LightComponent> result = std::dynamic_pointer_cast<LightComponent>(comp);
-			std::cout << comp.get() << " " << this;
-			Locator::getRendererService()->registerLight(result);
-		}
-	}
+	const std::shared_ptr<LightComponent> result = std::dynamic_pointer_cast<LightComponent>(mOwner->mComponents.back());
+	Locator::getRendererService()->registerLight(result);
 }

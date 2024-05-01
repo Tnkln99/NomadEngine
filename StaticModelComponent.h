@@ -11,7 +11,7 @@ public:
 	StaticModelComponent();
 	std::shared_ptr<StaticModel> mStaticModel;
 	// Inherited via IComponent
-	virtual void update() override;
+	virtual void update(float dt) override;
 	virtual void init() override;
 private:
 };

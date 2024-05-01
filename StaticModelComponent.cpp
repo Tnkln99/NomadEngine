@@ -7,20 +7,13 @@ StaticModelComponent::StaticModelComponent()
 {
 }
 
-void StaticModelComponent::update()
+void StaticModelComponent::update(float dt)
 {
 	
 }
 
 void StaticModelComponent::init()
 {
-	for(auto& comp : mOwner->mComponents)
-	{
-		if(comp.get() == this)
-		{
-			std::shared_ptr<StaticModelComponent> result = std::dynamic_pointer_cast<StaticModelComponent>(comp);
-			std::cout << comp.get() << " " << this;
-			Locator::getRendererService()->registerStaticModel(result);
-		}
-	}
+	const std::shared_ptr<StaticModelComponent> result = std::dynamic_pointer_cast<StaticModelComponent>(mOwner->mComponents.back());
+	Locator::getRendererService()->registerStaticModel(result);
 }

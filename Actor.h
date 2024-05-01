@@ -20,7 +20,7 @@ public:
         auto comp = std::make_shared<T>(std::forward<Args>(args)...);
         mComponents.emplace_back(comp);
         comp->mOwner = this;
-        std::cout << comp.get() << std::endl;
+        comp->init();
         return comp;
     }
 
@@ -36,9 +36,7 @@ public:
         }
         return nullptr;
     }
-    
-    void init();
-	void update();
+	void update(float dt);
 private:
 };
 

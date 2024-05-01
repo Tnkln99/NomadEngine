@@ -1,17 +1,10 @@
 #include "Actor.h"
 
-void Actor::init()
-{
-	for (const auto& comp : mComponents)
-	{
-		comp->init();
-	}
-}
 
-void Actor::update()
+void Actor::update(const float dt)
 {
 	for(const auto & comp : mComponents)
 	{
-		comp->update();
+		comp->update(dt);
 	}
 }
