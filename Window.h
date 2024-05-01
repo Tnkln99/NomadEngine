@@ -9,7 +9,7 @@
 class Window
 {
 public:
-	Window(const std::string& name);
+	Window(const std::string& name, int width, int height);
 
 	bool shouldCloseWindow();
 	void clear();
@@ -20,8 +20,8 @@ public:
 	const int getWidth();
 	const int getHeight();
 private:
-	int mWidth = 500;
-	int mHeight = 500;
+	int mWidth;
+	int mHeight;
 	GLFWwindow* mWindow = nullptr;
 	std::string mName;
 };

@@ -1,7 +1,7 @@
 #include "Window.h"
 #include "Locator.h"
 
-Window::Window(const std::string& name)
+Window::Window(const std::string& name, const int width, const int height) : mWidth(width), mHeight(height)
 {
 	mName = name;
 	// Initialize GLFW

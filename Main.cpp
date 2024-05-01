@@ -7,12 +7,13 @@
 
 int main()
 {
-	Window window{ "Nomad" };
+	Window window{ "Nomad" , 800, 800};
 	ResourceManager::loadShader("lightIndicator", "Light.vert", "Light.frag");
 	ResourceManager::loadShader("SkeletalModel", "SkeletalModel.vert", "SkeletalModel.frag");
 	ResourceManager::loadShader("StaticModel", "StaticModel.vert", "StaticModel.frag");
 
 	ResourceManager::loadStaticModel("Bob", "boblampclean.md5mesh");
+	ResourceManager::loadStaticModel("Forgotten", "Forgotten.FBX");
 
 	//SkeletalModel skeletalModel{};
 	//skeletalModel.loadModel("Forgotten.FBX");
@@ -35,13 +36,14 @@ int main()
 
 	Actor staticModelActor2{};
 	staticModelActor2.mTransform.mPos = glm::vec4{ 20, 0 , 0, 0 };
+	staticModelActor2.mTransform.mScale = glm::vec4{ 0.7f };
 	staticModelActor2.mTransform.mEulerRot = glm::vec4{ -45, 0, 0, 0 };
 	auto staticModelComp2 = staticModelActor2.addComponent<StaticModelComponent>();
-	staticModelComp2->mStaticModel = ResourceManager::getStaticModel("Bob");
+	staticModelComp2->mStaticModel = ResourceManager::getStaticModel("Forgotten");
 	
 
 	Actor lightActor{};
-	lightActor.mTransform.mPos = glm::vec4{ 0 ,  50 , 50 , 1 };
+	lightActor.mTransform.mPos = glm::vec4{ 0 ,  50 , 190 , 1 };
 	//std::cout << lightActor.mTransform.mPos.y << std::endl;
 	auto lightComp = lightActor.addComponent<LightComponent>();
 
@@ -53,7 +55,7 @@ int main()
 	float deltaTime = 0.0f;
 	float lastFrame = 0.0f;
 
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	renderer.changeRenderMode(FILL);
 
 	while (!window.shouldCloseWindow())
 	{
@@ -76,7 +78,6 @@ int main()
 
 		//Draws different meshes
 		//skeletalModel.draw(camera, light, transforms, debugBoneIndex);
-		//model->draw(camera, light);
 
 
 		window.swapBuffers();

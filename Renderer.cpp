@@ -42,3 +42,23 @@ void Renderer::registerWindow(const std::shared_ptr<Window> window)
 {
 	mWindow = window;
 }
+
+void Renderer::changeRenderMode(RenderMode renderMode) const
+{
+	switch (renderMode)
+	{
+	case FILL:
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		break;
+	case WIREFRAME:
+		std::cout << renderMode << std::endl;
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		break;
+	case POINT:
+		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+		break;
+	default:
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		break;
+	}
+}
