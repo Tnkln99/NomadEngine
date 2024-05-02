@@ -25,12 +25,6 @@ public:
 	SkeletalModel();
 	~SkeletalModel();
 
-	glm::vec3 mPosition{0.0f};
-	glm::vec3 mScale{1.0f};
-	glm::vec3 mRotation{0, 90, 0};
-
-	glm::mat4 mModelMatrix{1.0f};
-
 	std::map<std::string, BoneInfo> mBoneInfoMap; //
 	int mBoneCounter = 0;
 
@@ -39,8 +33,8 @@ public:
 
 	void loadModel(const std::string& fileName);
 
-	void draw(Camera& camera, const Light& light, 
-		std::vector<glm::mat4>& finalBoneMatrices, int debugBoneIndex);
+	void draw(const glm::mat4& modelMatrix, 
+		const std::vector<glm::mat4>& finalBoneMatrices);
 
 	std::shared_ptr<Shader> getShader() {
 		return mShader;

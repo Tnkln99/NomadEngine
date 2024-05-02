@@ -40,5 +40,5 @@ void main()
 	texCoord = aTex;
 	
 	// Outputs the positions/coordinates of all vertices
-	gl_Position = projection * view * model * vec4(crntPos, 1.0);
+	gl_Position = projection * view * model * vec4(aPos, 1.0);
 }

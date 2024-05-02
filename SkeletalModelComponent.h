@@ -2,6 +2,7 @@
 
 #include "IModelComponent.h"
 #include "SkeletalModel.h"
+#include "Animator.h"
 #include <memory>
 
 class SkeletalModelComponent : public IModelComponent
@@ -17,5 +18,7 @@ public:
 	virtual void draw(const glm::mat4 modelMatrix) override;
 
 	std::shared_ptr<SkeletalModel> mSkeletalModel;
+	Animator mAnimator{ nullptr };
+
 };
 

@@ -1,4 +1,5 @@
 #include"StaticModelComponent.h"
+#include"SkeletalModelComponent.h"
 #include "Actor.h"
 #include"ResourceManager.h"
 #include "Locator.h"
@@ -17,31 +18,23 @@ int main()
 
 	ResourceManager::loadSkeletalModel("Vampire", "dancing_vampire.dae");
 
-	//SkeletalModel skeletalModel{};
-	//skeletalModel.loadModel("Forgotten.FBX");
-	//Animation animation("ForgottenWalk.FBX", &skeletalModel);
-	//Animator animator(&animation);
-
-	//float angle = glm::radians(270.0f);
-	//skeletalModel.mModelMatrix = glm::rotate(skeletalModel.mModelMatrix, angle, axis);
-
 	Renderer renderer;
-	renderer.registerWindow(std::make_shared<Window>(window));
 	Locator::registerRenderer(std::make_shared<Renderer>(renderer));
 
+	renderer.registerWindow(std::make_shared<Window>(window));
 
 	Actor staticModelActor{};
 	staticModelActor.mTransform.mPos = glm::vec4{ -20, 0 , 0, 0};
-	staticModelActor.mTransform.mEulerRot = glm::vec4{ -45, 0, 0, 0 };
+	staticModelActor.mTransform.mEulerRot = glm::vec4{ -90, 0, 0, 0 };
 	auto staticModelComp = staticModelActor.addComponent<StaticModelComponent>();
 	staticModelComp->mStaticModel = ResourceManager::getStaticModel("Bob");
 
-	Actor staticModelActor2{};
-	staticModelActor2.mTransform.mPos = glm::vec4{ 20, 0 , 0, 0 };
-	staticModelActor2.mTransform.mScale = glm::vec4{ 0.7f };
-	staticModelActor2.mTransform.mEulerRot = glm::vec4{ -45, 0, 0, 0 };
-	auto staticModelComp2 = staticModelActor2.addComponent<StaticModelComponent>();
-	staticModelComp2->mStaticModel = ResourceManager::getStaticModel("Forgotten");
+	Actor skeletalModelActor{};
+	skeletalModelActor.mTransform.mPos = glm::vec4{ 20, 0 , 0, 0 };
+	skeletalModelActor.mTransform.mScale = glm::vec4{ 0.3f };
+	skeletalModelActor.mTransform.mEulerRot = glm::vec4{ 0, 0, 0, 0 };
+	auto skeletalModelComp = skeletalModelActor.addComponent<SkeletalModelComponent>();
+	skeletalModelComp->mSkeletalModel = ResourceManager::getSkeletalModel("Vampire");
 	
 
 	Actor lightActor{};
@@ -69,16 +62,11 @@ int main()
 
 		
 		staticModelActor.update(deltaTime);
-		staticModelActor2.update(deltaTime);
+		skeletalModelActor.update(deltaTime);
 		cameraActor.update(deltaTime);
 		lightActor.update(deltaTime);
 
 		Locator::getRendererService()->render();
-
-		//animator.updateAnimation(deltaTime);
-		//auto transforms = animator.getFinalBoneMatrices();
-		//skeletalModel.draw(camera, light, transforms, debugBoneIndex);
-
 
 		window.swapBuffers();
 		window.pollEvents();

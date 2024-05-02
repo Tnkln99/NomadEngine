@@ -55,5 +55,6 @@ void main()
     fragWeights = weights;
 
     gl_Position =  projection * view * model * totalPosition;
+    //gl_Position =  projection * view * vec3(model * vec4(aPos, 1.0f));
     //gl_Position = camMatrix * vec4(crntPos, 1.0);
 }

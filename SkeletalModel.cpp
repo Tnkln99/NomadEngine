@@ -15,9 +15,6 @@ SkeletalModel::~SkeletalModel()
 
 void SkeletalModel::loadModel(const std::string& fileName)
 {
-	mModelMatrix = glm::translate(mModelMatrix, mPosition);   
-	
-
 	mScene = mImporter.ReadFile(fileName.c_str(), aiProcess_Triangulate /*aiProcess_FlipUVs*/ | aiProcess_GenSmoothNormals | aiProcess_JoinIdenticalVertices);
 
 	if (mScene)
@@ -31,15 +28,13 @@ void SkeletalModel::loadModel(const std::string& fileName)
 	}
 }
 
-void SkeletalModel::draw(Camera& camera, const Light& light, 
-    std::vector<glm::mat4>& finalBoneMatrices, int debugBoneIndex)
+void SkeletalModel::draw(const glm::mat4& modelMatrix, const std::vector<glm::mat4>& finalBoneMatrices)
 {
-	mShader->activate();
-    glUniformMatrix4fv(glGetUniformLocation(mShader->mId, "model"), 1, GL_FALSE, glm::value_ptr(mModelMatrix));
+    glUniformMatrix4fv(glGetUniformLocation(mShader->mId, "model"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     // to show skinning
-    glUniform1i(glGetUniformLocation(mShader->mId, "debugOpen"), 1);
+    glUniform1i(glGetUniformLocation(mShader->mId, "debugOpen"), 0);
     // bone to show the skinning
-    glUniform1i(glGetUniformLocation(mShader->mId, "debugBone"), debugBoneIndex);
+    glUniform1i(glGetUniformLocation(mShader->mId, "debugBone"), 2);
 
     for (int i = 0; i < finalBoneMatrices.size(); ++i)
     {
