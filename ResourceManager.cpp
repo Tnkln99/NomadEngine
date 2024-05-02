@@ -2,6 +2,7 @@
 
 std::unordered_map<std::string, std::shared_ptr<Shader>> ResourceManager::mLoadedShaders;
 std::unordered_map<std::string, std::shared_ptr<StaticModel>> ResourceManager::mLoadedStaticModels;
+std::unordered_map<std::string, std::shared_ptr<SkeletalModel>> ResourceManager::mLoadedSkeletalModels;
 
 void ResourceManager::loadShader(const std::string& name, const std::string& vertexFile, const std::string& fragmentFile)
 {
@@ -43,5 +44,26 @@ std::shared_ptr<StaticModel> ResourceManager::getStaticModel(const std::string& 
 		return nullptr;
 	}
 	return mLoadedStaticModels[name];
+}
+
+void ResourceManager::loadSkeletealModel(const std::string& name, const std::string& filePath)
+{
+	if (mLoadedSkeletalModels.find(name) != mLoadedSkeletalModels.end())
+	{
+		std::cout << "Skeletal model " << name << " already loaded!" << std::endl;
+		return;
+	}
+	mLoadedSkeletalModels[name] = std::make_shared<SkeletalModel>();
+	mLoadedSkeletalModels[name]->loadModel(filePath);
+}
+
+std::shared_ptr<SkeletalModel> ResourceManager::getSkeletalModel(const std::string& name)
+{
+	if (mLoadedSkeletalModels.find(name) == mLoadedSkeletalModels.end())
+	{
+		std::cout << "Skeletal model " << name << " not loaded yet!" << std::endl;
+		return nullptr;
+	}
+	return mLoadedSkeletalModels[name];
 }
 

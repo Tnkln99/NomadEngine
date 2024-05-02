@@ -75,7 +75,6 @@ int main()
 
 		//animator.updateAnimation(deltaTime);
 		//auto transforms = animator.getFinalBoneMatrices();
-
 		//Draws different meshes
 		//skeletalModel.draw(camera, light, transforms, debugBoneIndex);
 
