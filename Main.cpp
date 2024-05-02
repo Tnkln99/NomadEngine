@@ -15,6 +15,8 @@ int main()
 	ResourceManager::loadStaticModel("Bob", "boblampclean.md5mesh");
 	ResourceManager::loadStaticModel("Forgotten", "Forgotten.FBX");
 
+	ResourceManager::loadSkeletalModel("Vampire", "dancing_vampire.dae");
+
 	//SkeletalModel skeletalModel{};
 	//skeletalModel.loadModel("Forgotten.FBX");
 	//Animation animation("ForgottenWalk.FBX", &skeletalModel);

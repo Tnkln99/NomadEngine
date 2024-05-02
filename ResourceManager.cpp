@@ -46,7 +46,7 @@ std::shared_ptr<StaticModel> ResourceManager::getStaticModel(const std::string& 
 	return mLoadedStaticModels[name];
 }
 
-void ResourceManager::loadSkeletealModel(const std::string& name, const std::string& filePath)
+void ResourceManager::loadSkeletalModel(const std::string& name, const std::string& filePath)
 {
 	if (mLoadedSkeletalModels.find(name) != mLoadedSkeletalModels.end())
 	{
