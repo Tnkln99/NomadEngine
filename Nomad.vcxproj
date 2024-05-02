@@ -181,10 +181,12 @@
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="IComponent.cpp" />
+    <ClCompile Include="IModelComponent.cpp" />
     <ClCompile Include="LightComponent.cpp" />
     <ClCompile Include="Locator.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="SkeletalModelComponent.cpp" />
     <ClCompile Include="StaticModel.cpp" />
     <ClCompile Include="Bone.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -211,10 +213,12 @@
     <ClInclude Include="AssimpGLMHelpers.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="IComponent.h" />
+    <ClInclude Include="IModelComponent.h" />
     <ClInclude Include="LightComponent.h" />
     <ClInclude Include="Locator.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="SkeletalModelComponent.h" />
     <ClInclude Include="StaticModel.h" />
     <ClInclude Include="Bone.h" />
     <ClInclude Include="Camera.h" />

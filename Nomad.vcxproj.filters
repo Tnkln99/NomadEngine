@@ -141,6 +141,12 @@
     <ClCompile Include="Locator.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
+    <ClCompile Include="SkeletalModelComponent.cpp">
+      <Filter>Source Files\Graphics\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="IModelComponent.cpp">
+      <Filter>Source Files\Graphics\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -217,6 +223,12 @@
     </ClInclude>
     <ClInclude Include="Locator.h">
       <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletalModelComponent.h">
+      <Filter>Header Files\Graphics\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="IModelComponent.h">
+      <Filter>Header Files\Graphics\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

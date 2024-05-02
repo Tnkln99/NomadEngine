@@ -42,6 +42,10 @@ public:
 	void draw(Camera& camera, const Light& light, 
 		std::vector<glm::mat4>& finalBoneMatrices, int debugBoneIndex);
 
+	std::shared_ptr<Shader> getShader() {
+		return mShader;
+	}
+
 private:
 	std::shared_ptr<Shader> mShader{};
 

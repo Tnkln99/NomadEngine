@@ -4,19 +4,19 @@
 
 void Renderer::render() const
 {
-	for(auto& staticModelComp : mStaticModels)
+	for(auto& model : mModels)
 	{
-		if(staticModelComp->mStaticModel == nullptr)
+		if(!model->shouldDraw())
 		{
 			continue;
 		}
 		mCurrentCamera->getCamera()->updateMatrix(45.0f, 0.1f, 1000.0f, mWindow, mCurrentCamera->mOwner->mTransform);
-		const auto shader = staticModelComp->mStaticModel->getShader();
+		const auto shader = model->getShader();
 		shader->activate();
 
 		mLights[0]->mLight->sendLightInfoToShader(shader, mLights[0]->mOwner->mTransform);
 		mCurrentCamera->getCamera()->sendCameraInfoToGpu(shader, mCurrentCamera->mOwner->mTransform);
-		staticModelComp->mStaticModel->draw(staticModelComp->mOwner->mTransform.getModelMatrix());
+		model->draw(model->mOwner->mTransform.getModelMatrix());
 	}
 
 	mLights[0]->mLight->drawIndicator(mCurrentCamera, mLights[0]->mOwner->mTransform.getModelMatrix());
@@ -32,10 +32,9 @@ void Renderer::registerLight(const std::shared_ptr<LightComponent>& light)
 	mLights.push_back(light);
 }
 
-void Renderer::registerStaticModel(const std::shared_ptr<StaticModelComponent>& staticModel)
+void Renderer::registerModel(const std::shared_ptr<IModelComponent>& model)
 {
-	std::cout << staticModel.get() << std::endl;
-	mStaticModels.push_back(staticModel);
+	mModels.push_back(model);
 }
 
 void Renderer::registerWindow(const std::shared_ptr<Window> window)

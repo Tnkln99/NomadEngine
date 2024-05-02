@@ -10,7 +10,7 @@ SkeletalModel::SkeletalModel()
 
 SkeletalModel::~SkeletalModel()
 {
-	mShader->Delete();
+
 }
 
 void SkeletalModel::loadModel(const std::string& fileName)
