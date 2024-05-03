@@ -18,7 +18,8 @@ public:
 	void calculateBoneTransform(const AssimpNodeData* node, glm::mat4 parentTransform);
 
 	std::vector<glm::mat4> getFinalBoneMatrices();
-	
+
+	void setCurrentAnimation(Animation* currentAnimation);
 private:
 	std::vector<glm::mat4> mFinalBoneMatrices;
 	Animation* mCurrentAnimation;

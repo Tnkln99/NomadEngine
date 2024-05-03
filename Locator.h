@@ -5,11 +5,12 @@
 class Locator
 {
 public:
-	static void registerRenderer(std::shared_ptr<Renderer> renderer) {
-		mRenderer = renderer;
-	}
-
 	static std::shared_ptr<Renderer> getRendererService() {
+		if(mRenderer)
+		{
+			return mRenderer;
+		}
+		mRenderer = std::make_shared<Renderer>();
 		return mRenderer;
 	}
 private:

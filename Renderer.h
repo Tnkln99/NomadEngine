@@ -27,8 +27,6 @@ public:
 
 	void changeRenderMode(RenderMode renderMode) const;
 private:
-	RenderMode mRenderMode = FILL;
-
 	std::shared_ptr<CameraComponent> mCurrentCamera = nullptr;
 	std::vector<std::shared_ptr<LightComponent>> mLights;
 	std::vector<std::shared_ptr<IModelComponent>> mModels;

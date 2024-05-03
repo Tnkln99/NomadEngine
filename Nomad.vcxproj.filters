@@ -326,5 +326,6 @@
     <Object Include="backpack.obj">
       <Filter>Resource Files\Assets\Models/Textures\Backpack</Filter>
     </Object>
+    <Object Include="Sphere.obj" />
   </ItemGroup>
 </Project>

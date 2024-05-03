@@ -8,10 +8,12 @@
 
 SkeletalModelComponent::SkeletalModelComponent()
 {
+	
 }
 
 void SkeletalModelComponent::update(float dt)
 {
+	mAnimator.updateAnimation(dt);
 }
 
 void SkeletalModelComponent::init()
@@ -33,7 +35,6 @@ std::shared_ptr<Shader> SkeletalModelComponent::getShader()
 void SkeletalModelComponent::draw(const glm::mat4 modelMatrix)
 {
 	//here animator will its calcuations from given animation resource 
-	//animator.updateAnimation(deltaTime);
-	//auto transforms = animator.getFinalBoneMatrices();
+	auto transforms = mAnimator.getFinalBoneMatrices();
 	mSkeletalModel->draw(modelMatrix, mAnimator.getFinalBoneMatrices());
 }

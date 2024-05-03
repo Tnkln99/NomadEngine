@@ -59,3 +59,8 @@ std::vector<glm::mat4> Animator::getFinalBoneMatrices()
 {
 	return mFinalBoneMatrices;
 }
+
+void Animator::setCurrentAnimation(Animation* currentAnimation)
+{
+	mCurrentAnimation = currentAnimation;
+}

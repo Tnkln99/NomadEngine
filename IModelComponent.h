@@ -8,7 +8,7 @@
 class IModelComponent : public IComponent
 {
 public:
-	virtual ~IModelComponent() = default;
+	~IModelComponent() override = default;
 
 	virtual bool shouldDraw() = 0;
 	virtual std::shared_ptr<Shader> getShader() = 0;

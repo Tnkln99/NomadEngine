@@ -17,11 +17,9 @@ int main()
 	ResourceManager::loadStaticModel("Forgotten", "Forgotten.FBX");
 
 	ResourceManager::loadSkeletalModel("Vampire", "dancing_vampire.dae");
+	ResourceManager::loadSkeletalModel("Bob", "boblampclean.md5mesh");
 
-	Renderer renderer;
-	Locator::registerRenderer(std::make_shared<Renderer>(renderer));
-
-	renderer.registerWindow(std::make_shared<Window>(window));
+	Locator::getRendererService()->registerWindow(std::make_shared<Window>(window));
 
 	Actor staticModelActor{};
 	staticModelActor.mTransform.mPos = glm::vec4{ -20, 0 , 0, 0};
@@ -31,14 +29,13 @@ int main()
 
 	Actor skeletalModelActor{};
 	skeletalModelActor.mTransform.mPos = glm::vec4{ 20, 0 , 0, 0 };
-	skeletalModelActor.mTransform.mScale = glm::vec4{ 0.3f };
-	skeletalModelActor.mTransform.mEulerRot = glm::vec4{ 0, 0, 0, 0 };
+	skeletalModelActor.mTransform.mScale = glm::vec4{ 1.0f };
+	skeletalModelActor.mTransform.mEulerRot = glm::vec4{ -90, 0, 0, 0 };
 	auto skeletalModelComp = skeletalModelActor.addComponent<SkeletalModelComponent>();
-	skeletalModelComp->mSkeletalModel = ResourceManager::getSkeletalModel("Vampire");
-	
+	skeletalModelComp->mSkeletalModel = ResourceManager::getSkeletalModel("Bob");
 
 	Actor lightActor{};
-	lightActor.mTransform.mPos = glm::vec4{ 0 ,  50 , 190 , 1 };
+	lightActor.mTransform.mPos = glm::vec4{ 0 ,  70 , 100 , 1 };
 	//std::cout << lightActor.mTransform.mPos.y << std::endl;
 	auto lightComp = lightActor.addComponent<LightComponent>();
 
@@ -50,7 +47,7 @@ int main()
 	float deltaTime = 0.0f;
 	float lastFrame = 0.0f;
 
-	renderer.changeRenderMode(FILL);
+	Locator::getRendererService()->changeRenderMode(FILL);
 
 	while (!window.shouldCloseWindow())
 	{
@@ -60,7 +57,6 @@ int main()
 
 		window.clear();
 
-		
 		staticModelActor.update(deltaTime);
 		skeletalModelActor.update(deltaTime);
 		cameraActor.update(deltaTime);
