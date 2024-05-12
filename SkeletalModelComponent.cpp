@@ -16,6 +16,10 @@ void SkeletalModelComponent::update(float dt)
 	mAnimator.updateAnimation(dt);
 }
 
+void SkeletalModelComponent::beginPlay()
+{
+}
+
 void SkeletalModelComponent::init()
 {
 	const std::shared_ptr<SkeletalModelComponent> result = std::dynamic_pointer_cast<SkeletalModelComponent>(mOwner->mComponents.back());

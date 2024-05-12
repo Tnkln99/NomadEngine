@@ -8,8 +8,9 @@ public:
 	LightComponent();
 
 	// Inherited via IComponent
-	virtual void update(float dt) override;
-	virtual void init() override;
+	void update(float dt) override;
+	void beginPlay() override;
+	void init() override;
 
 	std::shared_ptr<Light> mLight;
 };

@@ -36,7 +36,8 @@ public:
         }
         return nullptr;
     }
-	void update(float dt);
+	void update(float dt) const;
+    void beginPlay() const;
 private:
 };
 

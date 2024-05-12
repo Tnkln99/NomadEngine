@@ -10,6 +10,7 @@ public:
 	virtual ~IComponent() = default;
 	// called on update from owner 
 	virtual void update(float dt) = 0;
+	virtual void beginPlay() = 0;
 	// called right after added to an actor 
 	virtual void init() = 0;
 	Actor* mOwner{};

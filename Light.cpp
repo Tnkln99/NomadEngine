@@ -11,6 +11,7 @@
 Light::Light()
 {
 	mLightIndicatorShader = ResourceManager::getLoadedShader("lightIndicator");
+	mIndicatorModel = ResourceManager::getStaticModel("Sphere");
 }
 
 Light::~Light()
@@ -22,11 +23,10 @@ void Light::drawIndicator(const std::shared_ptr<CameraComponent>& cameraComp, co
 {
 	mLightIndicatorShader->activate();
 
-	glUniformMatrix4fv(glGetUniformLocation(mLightIndicatorShader->mId, "model"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
 	glUniform4f(glGetUniformLocation(mLightIndicatorShader->mId, "lightColor"), mLightColor.x, mLightColor.y, mLightColor.z, mLightColor.w);
 	cameraComp->getCamera()->sendCameraInfoToGpu(mLightIndicatorShader, cameraComp->mOwner->mTransform);
 
-	mIndicatorMesh.draw(mLightIndicatorShader);
+	mIndicatorModel->draw(modelMatrix, mLightIndicatorShader);
 }
 
 void Light::sendLightInfoToShader(std::shared_ptr<Shader> shader, Transform transform) const

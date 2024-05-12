@@ -24,6 +24,8 @@ uniform vec3 lightPos;
 // Gets the position of the camera from the main function
 uniform vec3 camPos;
 
+uniform int haveTextures;
+
 
 vec4 pointLight()
 {	
@@ -71,12 +73,19 @@ vec4 direcLight()
 	float specAmount = pow(max(dot(viewDirection, reflectionDirection), 0.0), shininess);
 	float specular = specAmount * specularStrength;
 
-	// Texturing
-	vec4 texDiffuse = texture(diffuse0, texCoord);
-	float texSpecular = texture(specular0, texCoord).r;
+	
+	vec4 color = vec4(0,0,0,0);
 
 	// Final color calculation
-	vec4 color = texDiffuse * (diffuse + ambientStrength) + vec4(texSpecular * specular, 0.0, 0.0, 0.0);
+	if(haveTextures == 1){
+		// Texturing
+		vec4 texDiffuse = texture(diffuse0, texCoord);
+		float texSpecular = texture(specular0, texCoord).r;
+		color = texDiffuse * (diffuse + ambientStrength) + vec4(texSpecular * specular, 0.0, 0.0, 0.0);
+	}
+	else{
+		color = vec4(1,1,1,1) * (diffuse + ambientStrength);
+	}
 	return color * lightColor;
 }
 

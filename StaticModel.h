@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Mesh.h"
-#include "Light.h"
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
@@ -18,6 +17,7 @@ public:
 	void loadModel(const std::string& fileName);
 
 	void draw(const glm::mat4 modelMatrix);
+	void draw(const glm::mat4 modelMatrix, std::shared_ptr<Shader> shader);
 
 	std::shared_ptr<Shader> getShader() {
 		return mShader;

@@ -12,6 +12,7 @@ public:
 
 	// Inherited via IModelComponent
 	void update(float dt) override;
+	void beginPlay() override;
 	void init() override;
 	bool shouldDraw() override;
 	std::shared_ptr<Shader> getShader() override;

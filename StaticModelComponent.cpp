@@ -12,6 +12,10 @@ void StaticModelComponent::update(float dt)
 	
 }
 
+void StaticModelComponent::beginPlay()
+{
+}
+
 void StaticModelComponent::init()
 {
 	const std::shared_ptr<StaticModelComponent> result = std::dynamic_pointer_cast<StaticModelComponent>(mOwner->mComponents.back());

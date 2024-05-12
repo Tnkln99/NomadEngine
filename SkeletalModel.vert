@@ -48,7 +48,7 @@ void main()
     }
 		
     crntPos = vec3(model * totalPosition);
-	Normal = norm;
+	Normal = mat3(transpose(inverse(model))) * norm;
 	fragColor = color;
 	texCoord = tex;
     fragBoneIds = boneIds;

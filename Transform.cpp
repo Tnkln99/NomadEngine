@@ -2,7 +2,7 @@
 #include <glm/trigonometric.hpp>
 #include <glm/gtx/quaternion.hpp>
 
-const glm::mat4 Transform::getModelMatrix()
+glm::mat4 Transform::getModelMatrix() const
 {
     const glm::mat4 transformX = glm::rotate(glm::mat4(1.0f),
         glm::radians(mEulerRot.x),

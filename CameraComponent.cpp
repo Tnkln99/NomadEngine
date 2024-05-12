@@ -12,6 +12,10 @@ void CameraComponent::update(float dt)
 		
 }
 
+void CameraComponent::beginPlay()
+{
+}
+
 void CameraComponent::init()
 {
 	const std::shared_ptr<CameraComponent> result = std::dynamic_pointer_cast<CameraComponent>(mOwner->mComponents.back());

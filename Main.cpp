@@ -15,6 +15,8 @@ int main()
 
 	ResourceManager::loadStaticModel("Bob", "boblampclean.md5mesh");
 	ResourceManager::loadStaticModel("Forgotten", "Forgotten.FBX");
+	ResourceManager::loadStaticModel("Cube", "Cube.obj");
+	ResourceManager::loadStaticModel("Sphere", "Sphere.obj");
 
 	ResourceManager::loadSkeletalModel("Vampire", "dancing_vampire.dae");
 	ResourceManager::loadSkeletalModel("Bob", "boblampclean.md5mesh");
@@ -23,9 +25,10 @@ int main()
 
 	Actor staticModelActor{};
 	staticModelActor.mTransform.mPos = glm::vec4{ -20, 0 , 0, 0};
+	staticModelActor.mTransform.mScale = glm::vec4{ 10 };
 	staticModelActor.mTransform.mEulerRot = glm::vec4{ -90, 0, 0, 0 };
 	auto staticModelComp = staticModelActor.addComponent<StaticModelComponent>();
-	staticModelComp->mStaticModel = ResourceManager::getStaticModel("Bob");
+	staticModelComp->mStaticModel = ResourceManager::getStaticModel("Sphere");
 
 	Actor skeletalModelActor{};
 	skeletalModelActor.mTransform.mPos = glm::vec4{ 20, 0 , 0, 0 };
@@ -42,12 +45,18 @@ int main()
 	Actor cameraActor{};
 	cameraActor.mTransform.mPos = glm::vec4{ 0 ,  50 , 200 , 1 };
 	auto cameraComp = cameraActor.addComponent<CameraComponent>();
+	//auto comtmp = cameraActor.getComponent<CameraComponent>();
 
 
 	float deltaTime = 0.0f;
 	float lastFrame = 0.0f;
 
 	Locator::getRendererService()->changeRenderMode(FILL);
+
+	staticModelActor.beginPlay();
+	skeletalModelActor.beginPlay();
+	cameraActor.beginPlay();
+	lightActor.beginPlay();
 
 	while (!window.shouldCloseWindow())
 	{

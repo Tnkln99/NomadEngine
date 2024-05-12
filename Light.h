@@ -3,7 +3,7 @@
 #include "Shader.h"
 #include "VAO.h"
 #include "CameraComponent.h"
-#include "Mesh.h"
+#include "StaticModel.h"
 
 class Light
 {
@@ -16,7 +16,7 @@ public:
 	void drawIndicator(const std::shared_ptr<CameraComponent>& cameraComp, const glm::mat4& modelMatrix);
 	void sendLightInfoToShader(std::shared_ptr<Shader> shader, Transform transform) const;
 private:
-	Mesh mIndicatorMesh{ Mesh::CUBE };
+	std::shared_ptr<StaticModel> mIndicatorModel;
 };
 
 #endif

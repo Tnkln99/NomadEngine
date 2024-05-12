@@ -9,8 +9,9 @@ class CameraComponent : public IComponent
 public:
 	CameraComponent();
 	// Inherited via IComponent
-	virtual void update(float dt) override;
-	virtual void init() override;
+	void update(float dt) override;
+	void beginPlay() override;
+	void init() override;
 
 	const std::shared_ptr<Camera> getCamera() {
 		return mCamera;

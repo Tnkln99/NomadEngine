@@ -12,6 +12,7 @@ public:
 	
 	// Inherited via IComponent
 	void update(float dt) override;
+	void beginPlay() override;
 	void init() override;
 
 	// Inherited via IModelComponent

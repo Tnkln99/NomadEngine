@@ -38,6 +38,15 @@ void StaticModel::draw(const glm::mat4 modelMatrix)
 	}
 }
 
+void StaticModel::draw(const glm::mat4 modelMatrix, std::shared_ptr<Shader> shader)
+{
+    glUniformMatrix4fv(glGetUniformLocation(mShader->mId, "model"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+    for (auto& mesh : mMeshes)
+    {
+        mesh.draw(shader);
+    }
+}
+
 void StaticModel::initFromScene(const std::string& fileName)
 {
     for(unsigned int i = 0; i < mScene->mNumMeshes; i++)
@@ -131,7 +140,6 @@ void StaticModel::initSingleMesh(const aiMesh* paiMesh, const std::string& fileN
             Texture diffuse{ texturePath.c_str(), "diffuse", 0 };
             textures.push_back(diffuse);
             mLoadedTextures.push_back({ diffuse, texturePath });
-
         }
     }
 
