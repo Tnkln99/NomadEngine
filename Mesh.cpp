@@ -2,22 +2,24 @@
 
 
 
-Mesh::Mesh(std::vector<Vertex>& vertices, std::vector <GLuint>& indices, std::vector <Texture>& textures) : mVertices(vertices), mIndices(indices), mTextures(textures)
+Mesh::Mesh(std::vector<Vertex>& vertices, std::vector <GLuint>& indices, std::vector <Texture>& textures) : IMesh(vertices, indices, textures)
 {
 	mVao.bind();
 	// Generates Vertex Buffer Object and links it to vertices
-	Vbo VBO(vertices);
+	Vbo vbo{};
+	vbo.init(vertices);
 	// Generates Element Buffer Object and links it to indices
-	Ebo EBO(indices);
-	// Links VBO attributes such as coordinates and colors to VAO
-	mVao.linkAttrib(VBO, 0, 3, GL_FLOAT, sizeof(Vertex), (void*)0);
-	mVao.linkAttrib(VBO, 1, 3, GL_FLOAT, sizeof(Vertex), (void*)(3 * sizeof(float)));
-	mVao.linkAttrib(VBO, 2, 3, GL_FLOAT, sizeof(Vertex), (void*)(6 * sizeof(float)));
-	mVao.linkAttrib(VBO, 3, 2, GL_FLOAT, sizeof(Vertex), (void*)(9 * sizeof(float)));
+	Ebo ebo{};
+	ebo.init(indices);
+	// Links vbo attributes such as coordinates and colors to VAO
+	mVao.linkAttrib(vbo, 0, 3, GL_FLOAT, sizeof(Vertex), (void*)offsetof(Vertex, mPosition));
+	mVao.linkAttrib(vbo, 1, 3, GL_FLOAT, sizeof(Vertex), (void*)offsetof(Vertex, mNormal));
+	mVao.linkAttrib(vbo, 2, 3, GL_FLOAT, sizeof(Vertex), (void*)offsetof(Vertex, mColor));
+	mVao.linkAttrib(vbo, 3, 2, GL_FLOAT, sizeof(Vertex), (void*)offsetof(Vertex, mTexUv));
 	// Unbind all to prevent accidentally modifying them
 	mVao.unbind();
-	VBO.unbind();
-	EBO.unbind();
+	vbo.unbind();
+	ebo.unbind();
 }
 
 

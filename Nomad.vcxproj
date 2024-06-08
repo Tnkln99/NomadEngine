@@ -180,7 +180,9 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
+    <ClCompile Include="ClothMesh.cpp" />
     <ClCompile Include="IComponent.cpp" />
+    <ClCompile Include="IMesh.cpp" />
     <ClCompile Include="IModelComponent.cpp" />
     <ClCompile Include="LightComponent.cpp" />
     <ClCompile Include="Locator.cpp" />
@@ -212,7 +214,9 @@
     <ClInclude Include="Animator.h" />
     <ClInclude Include="AssimpGLMHelpers.h" />
     <ClInclude Include="CameraComponent.h" />
+    <ClInclude Include="ClothMesh.h" />
     <ClInclude Include="IComponent.h" />
+    <ClInclude Include="IMesh.h" />
     <ClInclude Include="IModelComponent.h" />
     <ClInclude Include="LightComponent.h" />
     <ClInclude Include="Locator.h" />
@@ -239,6 +243,7 @@
     <None Include="backpack.mtl" />
     <None Include="boblampclean.md5anim" />
     <None Include="boblampclean.md5mesh" />
+    <None Include="ComputationCloth.comp" />
     <None Include="dancing_vampire.dae" />
     <None Include="StaticModel.frag" />
     <None Include="StaticModel.vert" />
@@ -270,6 +275,18 @@
   </ItemGroup>
   <ItemGroup>
     <Object Include="backpack.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Object>
+    <Object Include="Cube.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Object>
+    <Object Include="ClothSim.obj">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

@@ -11,6 +11,7 @@ class ResourceManager
 {
 public:
 	static void loadShader(const std::string& name, const std::string& vertexFile, const std::string& fragmentFile);
+	static void loadShader(const std::string& name, const std::string& computeFile);
 	static std::shared_ptr<Shader> getLoadedShader(const std::string& name);
 
 	static void loadStaticModel(const std::string& name, const std::string& filePath);

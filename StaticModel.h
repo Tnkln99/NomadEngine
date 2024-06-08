@@ -16,8 +16,8 @@ public:
 
 	void loadModel(const std::string& fileName);
 
-	void draw(const glm::mat4 modelMatrix);
-	void draw(const glm::mat4 modelMatrix, std::shared_ptr<Shader> shader);
+	void draw(glm::mat4 modelMatrix);
+	void draw(glm::mat4 modelMatrix, std::shared_ptr<Shader> shader);
 
 	std::shared_ptr<Shader> getShader() {
 		return mShader;
@@ -33,7 +33,7 @@ private:
 	void initFromScene(const std::string& fileName);
 	void initSingleMesh(const aiMesh* paiMesh, const std::string& fileName);
 	std::vector<TextureLoaded> mLoadedTextures;
-	std::vector<Mesh> mMeshes;
+	std::vector<std::unique_ptr<IMesh>> mMeshes;
 
 	Assimp::Importer mImporter;
 	const aiScene* mScene{};

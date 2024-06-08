@@ -1,22 +1,11 @@
 #pragma once
 
-#include"VAO.h"
-#include"EBO.h"
-#include"Texture.h"
+#include"IMesh.h"
 
 
-class SkeletalMesh
+class SkeletalMesh : public IMesh
 {
 public:
-	std::vector <Vertex> mVertices;
-	std::vector <GLuint> mIndices;
-	std::vector <Texture> mTextures;
-	// Store VAO in public so it can be used in the Draw function
-	Vao mVao;
-
-	// Initializes the mesh
-	SkeletalMesh(std::vector <Vertex>& vertices, std::vector <GLuint>& indices, std::vector <Texture>& textures);
-
-	// Draws the mesh
-	void draw(std::shared_ptr<Shader> shader);
+	SkeletalMesh(std::vector <VertexSkeletal>& vertices, std::vector <GLuint>& indices, std::vector <Texture>& textures);
+	void draw(std::shared_ptr<Shader> shader) override;
 };

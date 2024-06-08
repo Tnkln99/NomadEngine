@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -40,195 +32,202 @@
     <Filter Include="Resource Files\Assets\Models/Textures\Other\Textures">
       <UniqueIdentifier>{c785768d-2f31-47e5-8760-3377429dc823}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Graphics">
-      <UniqueIdentifier>{8d877da1-6d0f-4d7d-af58-091b09070c52}</UniqueIdentifier>
+    <Filter Include="Scr">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files\Graphics">
-      <UniqueIdentifier>{1c42aefc-b823-4921-9e17-7bc12b42e65f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Core">
+    <Filter Include="Scr\Core">
       <UniqueIdentifier>{0f771215-b3b4-4ab5-a6f7-9e32e0313d2d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core">
-      <UniqueIdentifier>{e16458a1-6a2b-4b54-a680-bddd646e6b4c}</UniqueIdentifier>
+    <Filter Include="Scr\Graphics">
+      <UniqueIdentifier>{1c42aefc-b823-4921-9e17-7bc12b42e65f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Graphics\Components">
+    <Filter Include="Scr\Graphics\Components">
       <UniqueIdentifier>{b904549a-c56b-4dea-a17e-feb4c075dcd7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Graphics\Components">
-      <UniqueIdentifier>{fa1d8f63-57ff-45a3-9aa6-7bfe5b8abf2c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Animation.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Animator.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Bone.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="EBO.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="glad.c">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Light.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="SkeletalMesh.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="SkeletalModel.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="StaticModel.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="stb.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="VAO.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="VBO.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Scr</Filter>
     </ClCompile>
     <ClCompile Include="Actor.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="IComponent.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="StaticModelComponent.cpp">
-      <Filter>Source Files\Graphics\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraComponent.cpp">
-      <Filter>Source Files\Graphics\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="LightComponent.cpp">
-      <Filter>Source Files\Graphics\Components</Filter>
+      <Filter>Scr\Core</Filter>
     </ClCompile>
     <ClCompile Include="Locator.cpp">
-      <Filter>Source Files\Core</Filter>
+      <Filter>Scr\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Scr\Core</Filter>
     </ClCompile>
     <ClCompile Include="SkeletalModelComponent.cpp">
-      <Filter>Source Files\Graphics\Components</Filter>
+      <Filter>Scr\Graphics\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticModelComponent.cpp">
+      <Filter>Scr\Graphics\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="LightComponent.cpp">
+      <Filter>Scr\Graphics\Components</Filter>
     </ClCompile>
     <ClCompile Include="IModelComponent.cpp">
-      <Filter>Source Files\Graphics\Components</Filter>
+      <Filter>Scr\Graphics\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>Scr\Graphics\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Animator.cpp">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Bone.cpp">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="ClothMesh.cpp">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="EBO.cpp">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="glad.c">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="IMesh.cpp">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletalMesh.cpp">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletalModel.cpp">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticModel.cpp">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="stb.cpp">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="VAO.cpp">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="VBO.cpp">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Scr\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="IComponent.cpp">
+      <Filter>Scr\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Scr\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Animator.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Scr\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="AssimpGLMHelpers.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Scr\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Bone.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Scr\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Scr\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="EBO.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Scr\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Light.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Scr\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Scr\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Scr\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Shader.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Scr\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="SkeletalMesh.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Scr\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="SkeletalModel.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Scr\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="StaticModel.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Scr\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Scr\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="VAO.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Scr\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="VBO.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Scr\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Actor.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="IComponent.h">
-      <Filter>Header Files\Core</Filter>
+      <Filter>Scr\Core</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
-      <Filter>Header Files\Core</Filter>
+      <Filter>Scr\Core</Filter>
     </ClInclude>
     <ClInclude Include="StaticModelComponent.h">
-      <Filter>Header Files\Graphics\Components</Filter>
+      <Filter>Scr\Graphics\Components</Filter>
     </ClInclude>
     <ClInclude Include="CameraComponent.h">
-      <Filter>Header Files\Graphics\Components</Filter>
+      <Filter>Scr\Graphics\Components</Filter>
     </ClInclude>
     <ClInclude Include="Window.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Scr\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Scr\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="LightComponent.h">
-      <Filter>Header Files\Graphics\Components</Filter>
+      <Filter>Scr\Graphics\Components</Filter>
     </ClInclude>
     <ClInclude Include="Locator.h">
-      <Filter>Header Files\Core</Filter>
+      <Filter>Scr\Core</Filter>
     </ClInclude>
     <ClInclude Include="SkeletalModelComponent.h">
-      <Filter>Header Files\Graphics\Components</Filter>
+      <Filter>Scr\Graphics\Components</Filter>
     </ClInclude>
     <ClInclude Include="IModelComponent.h">
-      <Filter>Header Files\Graphics\Components</Filter>
+      <Filter>Scr\Graphics\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ClothMesh.h">
+      <Filter>Scr\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="IMesh.h">
+      <Filter>Scr\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="IComponent.h">
+      <Filter>Scr\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -267,6 +266,9 @@
     </None>
     <None Include="ForgottenWalk.FBX">
       <Filter>Resource Files\Assets\Models/Textures\Forgotten</Filter>
+    </None>
+    <None Include="ComputationCloth.comp">
+      <Filter>Resource Files\Shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -326,6 +328,14 @@
     <Object Include="backpack.obj">
       <Filter>Resource Files\Assets\Models/Textures\Backpack</Filter>
     </Object>
-    <Object Include="Sphere.obj" />
+    <Object Include="Sphere.obj">
+      <Filter>Resource Files\Assets\Models/Textures\Other</Filter>
+    </Object>
+    <Object Include="Cube.obj">
+      <Filter>Resource Files\Assets\Models/Textures\Other</Filter>
+    </Object>
+    <Object Include="ClothSim.obj">
+      <Filter>Resource Files\Assets\Models/Textures\Other</Filter>
+    </Object>
   </ItemGroup>
 </Project>

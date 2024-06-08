@@ -1,29 +1,28 @@
 #include "SkeletalMesh.h"
 
-SkeletalMesh::SkeletalMesh(std::vector<Vertex>& vertices, std::vector<GLuint>& indices, std::vector<Texture>& textures) : mVertices(vertices), mIndices(indices), mTextures(textures)
+SkeletalMesh::SkeletalMesh(std::vector<VertexSkeletal>& vertices, std::vector<GLuint>& indices, std::vector<Texture>& textures) : IMesh(vertices, indices, textures)
 {
 	mVao.bind();
 	// Generates Vertex Buffer Object and links it to vertices
-	Vbo VBO(vertices);
+	Vbo vbo{};
+	vbo.init(vertices);
 	// Generates Element Buffer Object and links it to indices
-	Ebo EBO(indices);
-	// Links VBO attributes such as coordinates and colors to VAO
-	// Positions
-	mVao.linkAttrib(VBO, 0, 3, GL_FLOAT, sizeof(Vertex), (void*)0);
-	// Normal
-	mVao.linkAttrib(VBO, 1, 3, GL_FLOAT, sizeof(Vertex), (void*)(3 * sizeof(float)));
-	// Color 
-	mVao.linkAttrib(VBO, 2, 3, GL_FLOAT, sizeof(Vertex), (void*)(6 * sizeof(float)));
-	// Texture
-	mVao.linkAttrib(VBO, 3, 2, GL_FLOAT, sizeof(Vertex), (void*)(9 * sizeof(float)));
+	Ebo ebo{};
+	ebo.init(indices);
+	// Links vbo attributes such as coordinates and colors to VAO
+	// Links vbo attributes such as coordinates and colors to VAO
+	mVao.linkAttrib(vbo, 0, 3, GL_FLOAT, sizeof(VertexSkeletal), (void*)offsetof(VertexSkeletal, mPosition));
+	mVao.linkAttrib(vbo, 1, 3, GL_FLOAT, sizeof(VertexSkeletal), (void*)offsetof(VertexSkeletal, mNormal));
+	mVao.linkAttrib(vbo, 2, 3, GL_FLOAT, sizeof(VertexSkeletal), (void*)offsetof(VertexSkeletal, mColor));
+	mVao.linkAttrib(vbo, 3, 2, GL_FLOAT, sizeof(VertexSkeletal), (void*)offsetof(VertexSkeletal, mTexUv));
 	// BoneId's
-	mVao.linkAttrib(VBO, 4, 4, GL_INT, sizeof(Vertex), (void*)offsetof(Vertex, mBoneIDs));
+	mVao.linkAttrib(vbo, 4, 4, GL_INT, sizeof(VertexSkeletal), (void*)offsetof(VertexSkeletal, mBoneIDs));
 	// Weights
-	mVao.linkAttrib(VBO, 5, 4, GL_FLOAT, sizeof(Vertex), (void*)offsetof(Vertex, mWeights));
+	mVao.linkAttrib(vbo, 5, 4, GL_FLOAT, sizeof(VertexSkeletal), (void*)offsetof(VertexSkeletal, mWeights));
 	// Unbind all to prevent accidentally modifying them
 	mVao.unbind();
-	VBO.unbind();
-	EBO.unbind();
+	vbo.unbind();
+	ebo.unbind();
 }
 
 void SkeletalMesh::draw(std::shared_ptr<Shader> shader)

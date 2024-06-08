@@ -12,30 +12,32 @@ int main()
 	ResourceManager::loadShader("lightIndicator", "Light.vert", "Light.frag");
 	ResourceManager::loadShader("SkeletalModel", "SkeletalModel.vert", "SkeletalModel.frag");
 	ResourceManager::loadShader("StaticModel", "StaticModel.vert", "StaticModel.frag");
+	ResourceManager::loadShader("ComputationCloth", "ComputationCloth.comp");
 
 	ResourceManager::loadStaticModel("Bob", "boblampclean.md5mesh");
-	ResourceManager::loadStaticModel("Forgotten", "Forgotten.FBX");
-	ResourceManager::loadStaticModel("Cube", "Cube.obj");
+	//ResourceManager::loadStaticModel("Forgotten", "Forgotten.FBX");
+	//ResourceManager::loadStaticModel("Cube", "Cube.obj");
 	ResourceManager::loadStaticModel("Sphere", "Sphere.obj");
+	ResourceManager::loadStaticModel("Cloth", "ClothSim.obj");
 
-	ResourceManager::loadSkeletalModel("Vampire", "dancing_vampire.dae");
+	//ResourceManager::loadSkeletalModel("Vampire", "dancing_vampire.dae");
 	ResourceManager::loadSkeletalModel("Bob", "boblampclean.md5mesh");
 
 	Locator::getRendererService()->registerWindow(std::make_shared<Window>(window));
 
 	Actor staticModelActor{};
-	staticModelActor.mTransform.mPos = glm::vec4{ -20, 0 , 0, 0};
+	staticModelActor.mTransform.mPos = glm::vec4{ 0, 10 , 0, 0};
 	staticModelActor.mTransform.mScale = glm::vec4{ 10 };
-	staticModelActor.mTransform.mEulerRot = glm::vec4{ -90, 0, 0, 0 };
+	staticModelActor.mTransform.mEulerRot = glm::vec4{ 10, 0, 0, 0 };
 	auto staticModelComp = staticModelActor.addComponent<StaticModelComponent>();
-	staticModelComp->mStaticModel = ResourceManager::getStaticModel("Sphere");
+	staticModelComp->mStaticModel = ResourceManager::getStaticModel("Cloth");
 
 	Actor skeletalModelActor{};
 	skeletalModelActor.mTransform.mPos = glm::vec4{ 20, 0 , 0, 0 };
 	skeletalModelActor.mTransform.mScale = glm::vec4{ 1.0f };
 	skeletalModelActor.mTransform.mEulerRot = glm::vec4{ -90, 0, 0, 0 };
 	auto skeletalModelComp = skeletalModelActor.addComponent<SkeletalModelComponent>();
-	skeletalModelComp->mSkeletalModel = ResourceManager::getSkeletalModel("Bob");
+	//skeletalModelComp->mSkeletalModel = ResourceManager::getSkeletalModel("Bob");
 
 	Actor lightActor{};
 	lightActor.mTransform.mPos = glm::vec4{ 0 ,  70 , 100 , 1 };
@@ -51,7 +53,7 @@ int main()
 	float deltaTime = 0.0f;
 	float lastFrame = 0.0f;
 
-	Locator::getRendererService()->changeRenderMode(FILL);
+	Locator::getRendererService()->changeRenderMode(WIREFRAME);
 
 	staticModelActor.beginPlay();
 	skeletalModelActor.beginPlay();

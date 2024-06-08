@@ -51,11 +51,11 @@ private:
 
 	void initFromScene(const std::string& fileName);
 	void initSingleMesh(const aiMesh* paiMesh, const std::string& fileName);
-	void setVertexBoneDataToDefault(Vertex& vertex);
-	void extractBoneWeightForVertices(std::vector<Vertex>& vertices, const aiMesh* mesh);
-	void setVertexBoneData(Vertex& vertex, int boneID, float weight);
+	void setVertexBoneDataToDefault(VertexSkeletal& vertex);
+	void extractBoneWeightForVertices(std::vector<VertexSkeletal>& vertices, const aiMesh* mesh);
+	void setVertexBoneData(VertexSkeletal& vertex, int boneID, float weight);
 	std::vector<TextureLoaded> mLoadedTextures;
-	std::vector<SkeletalMesh> mMeshes;
+	std::vector<std::unique_ptr<IMesh>> mMeshes;
 
 	Assimp::Importer mImporter;
 	const aiScene* mScene{};

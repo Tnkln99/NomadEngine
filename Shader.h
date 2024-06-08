@@ -4,8 +4,6 @@
 #include<string>
 #include<fstream>
 #include<sstream>
-#include<iostream>
-#include<cerrno>
 
 std::string get_file_contents(const char* filename);
 
@@ -18,9 +16,13 @@ public:
 	Shader() = default;
 
 	void loadShader(const char* vertexFile, const char* fragmentFile);
+	void loadComputeShader(const char* computeFile);
 
 	// Activates the Shader Program
 	void activate();
 	// Deletes the Shader Program
 	void Delete();
+
+private:
+	void checkShaderCompilation(GLuint shader);
 };

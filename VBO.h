@@ -8,16 +8,23 @@
 
 
 
-constexpr int MAX_BONE_INFLUENCE = 4;
 
 // Structure to standardize the vertices used in the meshes
 struct Vertex
 {
-	glm::vec3 mPosition;
-	glm::vec3 mNormal;
-	glm::vec3 mColor;
+	glm::vec4 mPosition;
+	glm::vec4 mNormal;
+	glm::vec4 mColor;
 	glm::vec2 mTexUv;
+	float mPadding1;
+	float mPadding2;
+};
 
+constexpr int MAX_BONE_INFLUENCE = 4;
+
+
+struct VertexSkeletal : Vertex
+{
 	//bone indexes which will influence this vertex
 	int mBoneIDs[MAX_BONE_INFLUENCE];
 	//weights from each bone
@@ -29,10 +36,11 @@ struct Vertex
 class Vbo
 {
 public:
-	// Reference ID of the Vertex Buffer Object
 	GLuint mId;
-	// Constructor that generates a Vertex Buffer Object and links it to vertices
-	explicit Vbo(std::vector<Vertex>& vertices);
+	Vbo() = default;
+
+	void init(std::vector<Vertex>& vertices);
+	void init(std::vector<VertexSkeletal>& vertices);
 
 	// Binds the VBO
 	void bind();

@@ -15,6 +15,17 @@ void ResourceManager::loadShader(const std::string& name, const std::string& ver
 	mLoadedShaders[name]->loadShader(vertexFile.c_str(), fragmentFile.c_str());
 }
 
+void ResourceManager::loadShader(const std::string& name, const std::string& computeFile)
+{
+	if (mLoadedShaders.find(name) != mLoadedShaders.end())
+	{
+		std::cout << "Shader " << name << " already loaded!" << std::endl;
+		return;
+	}
+	mLoadedShaders[name] = std::make_shared<Shader>();
+	mLoadedShaders[name]->loadComputeShader(computeFile.c_str());
+}
+
 std::shared_ptr<Shader> ResourceManager::getLoadedShader(const std::string& name)
 {
 	if (mLoadedShaders.find(name) == mLoadedShaders.end())

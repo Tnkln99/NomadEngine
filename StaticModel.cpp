@@ -1,5 +1,6 @@
 #include "StaticModel.h"
 #include "ResourceManager.h"
+#include "ClothMesh.h"
 
 
 #include <assimp/postprocess.h>
@@ -34,7 +35,7 @@ void StaticModel::draw(const glm::mat4 modelMatrix)
     glUniformMatrix4fv(glGetUniformLocation(mShader->mId, "model"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
 	for(auto & mesh : mMeshes)
 	{
-		mesh.draw(mShader);
+		mesh->draw(mShader);
 	}
 }
 
@@ -43,7 +44,7 @@ void StaticModel::draw(const glm::mat4 modelMatrix, std::shared_ptr<Shader> shad
     glUniformMatrix4fv(glGetUniformLocation(mShader->mId, "model"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     for (auto& mesh : mMeshes)
     {
-        mesh.draw(shader);
+        mesh->draw(shader);
     }
 }
 
@@ -63,19 +64,21 @@ void StaticModel::initSingleMesh(const aiMesh* paiMesh, const std::string& fileN
     std::vector<unsigned int> indices;
     std::vector<Texture> textures;
 
+    std::cout << paiMesh->mName.C_Str() << std::endl;
+
     for (unsigned int i = 0; i < paiMesh->mNumVertices; i++) {
         Vertex vertex{};
         const aiVector3D& pPos = paiMesh->mVertices[i];
 
-        vertex.mPosition = glm::vec3(pPos.x, pPos.y, pPos.z);
+        vertex.mPosition = glm::vec4(pPos.x, pPos.y, pPos.z, 1.0f);
 
         if (paiMesh->mNormals) {
             const aiVector3D& pNormal = paiMesh->mNormals[i];
-            vertex.mNormal = glm::vec3(pNormal.x, pNormal.y, pNormal.z);
+            vertex.mNormal = glm::vec4(pNormal.x, pNormal.y, pNormal.z, 1.0f);
         }
         else {
             aiVector3D Normal(0.0f, 1.0f, 0.0f);
-            vertex.mNormal = glm::vec3(Normal.x, Normal.y, Normal.z);
+            vertex.mNormal = glm::vec4(Normal.x, Normal.y, Normal.z, 1.0f);
         }
 
         if (paiMesh->HasTextureCoords(0)) {
@@ -185,11 +188,14 @@ void StaticModel::initSingleMesh(const aiMesh* paiMesh, const std::string& fileN
             mLoadedTextures.push_back({ speculer, strSpec.C_Str() });
         }
     }
-    
-
-
-    Mesh mesh{ vertices, indices, textures };
-    mMeshes.push_back(mesh);
+    if(strstr(paiMesh->mName.C_Str(), "ClothSim") != NULL)
+    {
+        mMeshes.push_back(std::make_unique<ClothMesh>(vertices, indices, textures));
+    }
+    else
+    {
+        mMeshes.push_back(std::make_unique<Mesh>(vertices, indices, textures));
+    }
 }
 
 

@@ -42,9 +42,9 @@ void SkeletalModel::draw(const glm::mat4& modelMatrix, const std::vector<glm::ma
         glUniformMatrix4fv(glGetUniformLocation(mShader->mId, name.c_str()), 1, GL_FALSE, glm::value_ptr(finalBoneMatrices[i]));
     }
 
-	for (auto& mesh : mMeshes)
+	for (const auto& mesh : mMeshes)
 	{
-		mesh.draw(mShader);
+		mesh->draw(mShader);
 	}
 }
 
@@ -59,24 +59,24 @@ void SkeletalModel::initFromScene(const std::string& fileName)
 
 void SkeletalModel::initSingleMesh(const aiMesh* paiMesh, const std::string& fileName)
 {
-    std::vector<Vertex> vertices;
+    std::vector<VertexSkeletal> vertices;
     std::vector<unsigned int> indices;
     std::vector<Texture> textures;
 
     for (unsigned int i = 0; i < paiMesh->mNumVertices; i++) {
-        Vertex vertex{};
+        VertexSkeletal vertex{};
         setVertexBoneDataToDefault(vertex);
         const aiVector3D& pPos = paiMesh->mVertices[i];
 
-        vertex.mPosition = glm::vec3(pPos.x, pPos.y, pPos.z);
+        vertex.mPosition = glm::vec4(pPos.x, pPos.y, pPos.z, 1.0f);
 
         if (paiMesh->mNormals) {
             const aiVector3D& pNormal = paiMesh->mNormals[i];
-            vertex.mNormal = glm::vec3(pNormal.x, pNormal.y, pNormal.z);
+            vertex.mNormal = glm::vec4(pNormal.x, pNormal.y, pNormal.z, 1.0f);
         }
         else {
             aiVector3D Normal(0.0f, 1.0f, 0.0f);
-            vertex.mNormal = glm::vec3(Normal.x, Normal.y, Normal.z);
+            vertex.mNormal = glm::vec4(Normal.x, Normal.y, Normal.z, 1.0f);
         }
 
         if (paiMesh->HasTextureCoords(0)) {
@@ -190,11 +190,10 @@ void SkeletalModel::initSingleMesh(const aiMesh* paiMesh, const std::string& fil
 
     extractBoneWeightForVertices(vertices, paiMesh);
 
-    SkeletalMesh mesh{ vertices, indices, textures };
-    mMeshes.push_back(mesh);
+    mMeshes.push_back(std::make_unique<SkeletalMesh>(vertices, indices, textures));
 }
 
-void SkeletalModel::setVertexBoneDataToDefault(Vertex& vertex)
+void SkeletalModel::setVertexBoneDataToDefault(VertexSkeletal& vertex)
 
 {
     for (int i = 0; i < MAX_BONE_INFLUENCE; i++)
@@ -204,7 +203,7 @@ void SkeletalModel::setVertexBoneDataToDefault(Vertex& vertex)
     }
 }
 
-void SkeletalModel::extractBoneWeightForVertices(std::vector<Vertex>& vertices, const aiMesh* mesh)
+void SkeletalModel::extractBoneWeightForVertices(std::vector<VertexSkeletal>& vertices, const aiMesh* mesh)
 {
     for (int boneIndex = 0; boneIndex < mesh->mNumBones; ++boneIndex)
     {
@@ -241,7 +240,7 @@ void SkeletalModel::extractBoneWeightForVertices(std::vector<Vertex>& vertices, 
     }
 }
 
-void SkeletalModel::setVertexBoneData(Vertex& vertex, int boneID, float weight)
+void SkeletalModel::setVertexBoneData(VertexSkeletal& vertex, int boneID, float weight)
 {
     for (int i = 0; i < MAX_BONE_INFLUENCE; ++i)
     {
