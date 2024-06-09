@@ -14,7 +14,7 @@ int main()
 	ResourceManager::loadShader("StaticModel", "StaticModel.vert", "StaticModel.frag");
 	ResourceManager::loadShader("ComputationCloth", "ComputationCloth.comp");
 
-	ResourceManager::loadStaticModel("Bob", "boblampclean.md5mesh");
+	//ResourceManager::loadStaticModel("Bob", "boblampclean.md5mesh");
 	//ResourceManager::loadStaticModel("Forgotten", "Forgotten.FBX");
 	//ResourceManager::loadStaticModel("Cube", "Cube.obj");
 	ResourceManager::loadStaticModel("Sphere", "Sphere.obj");

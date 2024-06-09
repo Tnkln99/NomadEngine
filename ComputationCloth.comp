@@ -12,20 +12,15 @@ struct Vertex {
 };
 
 layout (std430, binding = 0) buffer InVertices {
-    Vertex inVertices[];
-};
-
-layout (std430, binding = 1) buffer OutVertices {
-    Vertex outVertices[];
+    Vertex vertices[];
 };
 
 void main() {
     uint index = gl_GlobalInvocationID.x;
 
-    if (index >= inVertices.length()) {
+    if (index >= vertices.length()) {
         return; // Early exit if the index is out of bounds
     }
 
-    Vertex v = inVertices[index];
-    outVertices[index].position.x = v.position.x + 0.0001; // Copy all fields from input to output
+    vertices[index].position.x += 0.001f;
 }
