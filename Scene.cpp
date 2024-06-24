@@ -11,7 +11,7 @@ void Scene::init()
 
 	Actor light;
 	mActors["Light"] = light;
-	mActors["Light"].mTransform.mPos = glm::vec4{ 0 ,  10 , 10 , 1 };
+	mActors["Light"].mTransform.mPos = glm::vec4{ -5 ,  12 , 10 , 1 };
 	//std::cout << lightActor.mTransform.mPos.y << std::endl;
 	auto lightComp = mActors["Light"].addComponent<LightComponent>();
 

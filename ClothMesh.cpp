@@ -149,7 +149,7 @@ void ClothMesh::updateCloth(glm::mat4 modelMatrix)
     glm::mat4 invModelMatrix = glm::inverse(modelMatrix);
 
     std::default_random_engine rndEngine((unsigned)time(nullptr));
-    std::uniform_real_distribution<float> rd(1.0f, 20.0f);
+    std::uniform_real_distribution<float> rd(1.0f, 120.0f);
 
     float windX = cos(glm::radians(-glfwGetTime() * 360.0f)) * (rd(rndEngine) - rd(rndEngine));
     float windY = sin(glm::radians(glfwGetTime() * 360.0f)) * (rd(rndEngine) - rd(rndEngine));
@@ -179,8 +179,8 @@ void ClothMesh::updateCloth(glm::mat4 modelMatrix)
     glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 2, mNeighborOffsetBuffer);
     glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 3, mNeighborDataBuffer);
 
-    glDispatchCompute(workGroupsX, 1, 1);
 
+    glDispatchCompute(workGroupsX, 1, 1);
     // Memory barrier to ensure all writes are complete before using the buffer
     glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT | GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT);
 
