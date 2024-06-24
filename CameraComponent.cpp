@@ -19,5 +19,5 @@ void CameraComponent::beginPlay()
 void CameraComponent::init()
 {
 	const std::shared_ptr<CameraComponent> result = std::dynamic_pointer_cast<CameraComponent>(mOwner->mComponents.back());
-	Locator::getRendererService()->registerCamera(result);
+	Locator::getRendererService().registerCamera(result);
 }

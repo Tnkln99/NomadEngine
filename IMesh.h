@@ -13,7 +13,7 @@ class IMesh
 {
 public:
 	virtual ~IMesh() = default;
-	virtual void draw(std::shared_ptr<Shader> shader) = 0;
+	virtual void draw(std::shared_ptr<Shader> shader, glm::mat4 modelMatrix) = 0;
 protected:
 	IMesh(std::vector <Vertex>& vertices, std::vector <GLuint>& indices, std::vector <Texture>& textures);
 	IMesh(std::vector <VertexSkeletal>& vertices, std::vector <GLuint>& indices, std::vector <Texture>& textures);

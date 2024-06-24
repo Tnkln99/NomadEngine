@@ -1,0 +1,61 @@
+#version 430
+
+layout (local_size_x = 16, local_size_y = 1, local_size_z = 1) in;
+
+struct Vertex {
+    vec4 position;
+    vec4 normal;
+    vec4 color;
+    vec2 texCoord;
+    float padding1;
+    float padding2;
+};
+
+layout (std430, binding = 0) buffer InVertices {
+    Vertex vertices[];
+};
+
+layout (std430, binding = 1) buffer NewPositions {
+    vec4 newPositions[];
+};
+
+layout (std430, binding = 2) buffer NeighborOffsets {
+    uint neighborOffsets[];
+};
+
+layout (std430, binding = 3) buffer NeighborData {
+    uint neighborData[];
+};
+
+void main() {
+    uint index = gl_GlobalInvocationID.x;
+
+    if (index >= vertices.length() || index >= newPositions.length()) {
+        return; // Early exit if the index is out of bounds
+    }
+
+    vec4 newPosition = newPositions[index];
+
+    // Constraint solver using neighbor list
+    uint start = neighborOffsets[index];
+    uint end = neighborOffsets[index + 1];
+
+    for (uint i = start; i < end; ++i) {
+        uint neighborIndex = neighborData[i];
+        vec4 neighborPosition = vertices[neighborIndex].position;
+
+        vec4 delta = neighborPosition - newPosition;
+        float deltaLength = length(delta);
+
+        // Compute the rest length based on initial positions
+        float restLength = 1.2f; // Ideally, this should be computed or passed in
+
+        // Adjust the positions to maintain the rest length
+        if (deltaLength > restLength) {
+            vec4 correction = (deltaLength - restLength) / deltaLength * delta;
+            newPosition += 0.5 * correction * vertices[index].color;
+        }
+    }
+
+    vertices[index].position = newPosition;
+}

@@ -4,6 +4,8 @@
 #define GLFW_INCLUDE_NONE
 #include<GLFW/glfw3.h>
 #include <iostream>
+#include "imgui/imgui_impl_glfw.h"
+
 
 
 class Window
@@ -19,6 +21,11 @@ public:
 
 	const int getWidth();
 	const int getHeight();
+
+	void setUpImgui() const
+	{
+		ImGui_ImplGlfw_InitForOpenGL(mWindow, true);
+	}
 private:
 	int mWidth;
 	int mHeight;

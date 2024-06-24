@@ -35,7 +35,7 @@ void StaticModel::draw(const glm::mat4 modelMatrix)
     glUniformMatrix4fv(glGetUniformLocation(mShader->mId, "model"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
 	for(auto & mesh : mMeshes)
 	{
-		mesh->draw(mShader);
+		mesh->draw(mShader, modelMatrix);
 	}
 }
 
@@ -44,7 +44,7 @@ void StaticModel::draw(const glm::mat4 modelMatrix, std::shared_ptr<Shader> shad
     glUniformMatrix4fv(glGetUniformLocation(mShader->mId, "model"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     for (auto& mesh : mMeshes)
     {
-        mesh->draw(shader);
+        mesh->draw(shader, modelMatrix);
     }
 }
 
@@ -69,6 +69,13 @@ void StaticModel::initSingleMesh(const aiMesh* paiMesh, const std::string& fileN
     for (unsigned int i = 0; i < paiMesh->mNumVertices; i++) {
         Vertex vertex{};
         const aiVector3D& pPos = paiMesh->mVertices[i];
+
+        if(paiMesh->HasVertexColors(0))
+        {
+            aiColor4D color = paiMesh->mColors[0][i]; // Access the first set of vertex colors
+            vertex.mColor = {color.r, color.g, color.b, color.a};
+        }
+        
 
         vertex.mPosition = glm::vec4(pPos.x, pPos.y, pPos.z, 1.0f);
 

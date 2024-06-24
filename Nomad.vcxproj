@@ -105,6 +105,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>Include\imgui;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -124,6 +125,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>Include\imgui;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,7 +144,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libaries\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Include\imgui;$(SolutionDir)Libaries\Include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -163,6 +165,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>Include\imgui;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -181,13 +184,23 @@
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="ClothMesh.cpp" />
+    <ClCompile Include="Engine.cpp" />
     <ClCompile Include="IComponent.cpp" />
     <ClCompile Include="IMesh.cpp" />
     <ClCompile Include="IModelComponent.cpp" />
+    <ClCompile Include="Libaries\Include\imgui\imgui.cpp" />
+    <ClCompile Include="Libaries\Include\imgui\imgui_demo.cpp" />
+    <ClCompile Include="Libaries\Include\imgui\imgui_draw.cpp" />
+    <ClCompile Include="Libaries\Include\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="Libaries\Include\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Libaries\Include\imgui\imgui_tables.cpp" />
+    <ClCompile Include="Libaries\Include\imgui\imgui_widgets.cpp" />
     <ClCompile Include="LightComponent.cpp" />
     <ClCompile Include="Locator.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="SandBoxScene.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SkeletalModelComponent.cpp" />
     <ClCompile Include="StaticModel.cpp" />
     <ClCompile Include="Bone.cpp" />
@@ -203,6 +216,7 @@
     <ClCompile Include="StaticModelComponent.cpp" />
     <ClCompile Include="stb.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="VAO.cpp" />
     <ClCompile Include="VBO.cpp" />
@@ -215,13 +229,25 @@
     <ClInclude Include="AssimpGLMHelpers.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="ClothMesh.h" />
+    <ClInclude Include="Engine.h" />
     <ClInclude Include="IComponent.h" />
     <ClInclude Include="IMesh.h" />
     <ClInclude Include="IModelComponent.h" />
+    <ClInclude Include="Libaries\Include\imgui\imconfig.h" />
+    <ClInclude Include="Libaries\Include\imgui\imgui.h" />
+    <ClInclude Include="Libaries\Include\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="Libaries\Include\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="Libaries\Include\imgui\imgui_internal.h" />
+    <ClInclude Include="Libaries\Include\imgui\imstb_rectpack.h" />
+    <ClInclude Include="Libaries\Include\imgui\imstb_textedit.h" />
+    <ClInclude Include="Libaries\Include\imgui\imstb_truetype.h" />
     <ClInclude Include="LightComponent.h" />
     <ClInclude Include="Locator.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="SandBoxScene.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="SkeletalModelComponent.h" />
     <ClInclude Include="StaticModel.h" />
     <ClInclude Include="Bone.h" />
@@ -234,6 +260,7 @@
     <ClInclude Include="SkeletalModel.h" />
     <ClInclude Include="StaticModelComponent.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="VAO.h" />
     <ClInclude Include="VBO.h" />
@@ -243,7 +270,8 @@
     <None Include="backpack.mtl" />
     <None Include="boblampclean.md5anim" />
     <None Include="boblampclean.md5mesh" />
-    <None Include="ComputationCloth.comp" />
+    <None Include="ComputationClothFirstPass.comp" />
+    <None Include="ComputationClothSecondPass.comp" />
     <None Include="dancing_vampire.dae" />
     <None Include="StaticModel.frag" />
     <None Include="StaticModel.vert" />

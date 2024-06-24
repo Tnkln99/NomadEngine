@@ -25,7 +25,7 @@ SkeletalMesh::SkeletalMesh(std::vector<VertexSkeletal>& vertices, std::vector<GL
 	ebo.unbind();
 }
 
-void SkeletalMesh::draw(std::shared_ptr<Shader> shader)
+void SkeletalMesh::draw(std::shared_ptr<Shader> shader, glm::mat4 modelMatrix)
 {
 	mVao.bind();
 

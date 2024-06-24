@@ -2,18 +2,18 @@
 
 #include "Renderer.h"
 
+// singleton and service manager
 class Locator
 {
 public:
-	static std::shared_ptr<Renderer> getRendererService() {
-		if(mRenderer)
-		{
-			return mRenderer;
-		}
-		mRenderer = std::make_shared<Renderer>();
-		return mRenderer;
+	static Renderer& getRendererService() {
+		static Renderer renderer;
+		return renderer;
 	}
 private:
-	static std::shared_ptr<Renderer> mRenderer;
+	Locator() = default;
+
+	Locator(const Locator&) = delete; // Delete copy constructor
+	Locator& operator=(const Locator&) = delete; // Delete copy assignment operator
 };
 

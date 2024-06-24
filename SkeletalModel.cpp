@@ -44,7 +44,7 @@ void SkeletalModel::draw(const glm::mat4& modelMatrix, const std::vector<glm::ma
 
 	for (const auto& mesh : mMeshes)
 	{
-		mesh->draw(mShader);
+		mesh->draw(mShader, modelMatrix);
 	}
 }
 
@@ -67,6 +67,12 @@ void SkeletalModel::initSingleMesh(const aiMesh* paiMesh, const std::string& fil
         VertexSkeletal vertex{};
         setVertexBoneDataToDefault(vertex);
         const aiVector3D& pPos = paiMesh->mVertices[i];
+
+        if (paiMesh->HasVertexColors(0))
+        {
+            aiColor4D color = paiMesh->mColors[0][i]; // Access the first set of vertex colors
+            vertex.mColor = { color.r, color.g, color.b, color.a };
+        }
 
         vertex.mPosition = glm::vec4(pPos.x, pPos.y, pPos.z, 1.0f);
 

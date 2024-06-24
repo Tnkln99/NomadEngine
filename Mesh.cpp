@@ -23,7 +23,7 @@ Mesh::Mesh(std::vector<Vertex>& vertices, std::vector <GLuint>& indices, std::ve
 }
 
 
-void Mesh::draw(std::shared_ptr<Shader> shader)
+void Mesh::draw(std::shared_ptr<Shader> shader, glm::mat4 modelMatrix)
 {
 	mVao.bind();
 

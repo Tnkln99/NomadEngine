@@ -1,5 +1,5 @@
-#ifndef LIGHT_CLASS_H
-#define LIGHT_CLASS_H
+#pragma once 
+
 #include "Shader.h"
 #include "VAO.h"
 #include "CameraComponent.h"
@@ -19,5 +19,4 @@ private:
 	std::shared_ptr<StaticModel> mIndicatorModel;
 };
 
-#endif
 
