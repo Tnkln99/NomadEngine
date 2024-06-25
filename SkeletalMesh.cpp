@@ -46,6 +46,7 @@ void SkeletalMesh::draw(std::shared_ptr<Shader> shader, glm::mat4 modelMatrix)
 			num = std::to_string(numSpecular++);
 		}
 		mTextures[i].texUnit(shader, (type + num).c_str(), i);
+		mTextures[i].activate();
 		mTextures[i].bind();
 	}
 

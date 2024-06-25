@@ -128,6 +128,7 @@ void ClothMesh::draw(std::shared_ptr<Shader> shader, glm::mat4 modelMatrix)
             num = std::to_string(numSpecular++);
         }
         mTextures[i].texUnit(shader, (type + num).c_str(), i);
+        mTextures[i].activate();
         mTextures[i].bind();
     }
 
@@ -149,7 +150,7 @@ void ClothMesh::updateCloth(glm::mat4 modelMatrix)
     glm::mat4 invModelMatrix = glm::inverse(modelMatrix);
 
     std::default_random_engine rndEngine((unsigned)time(nullptr));
-    std::uniform_real_distribution<float> rd(1.0f, 120.0f);
+    std::uniform_real_distribution<float> rd(1.0f, 80.0f);
 
     float windX = cos(glm::radians(-glfwGetTime() * 360.0f)) * (rd(rndEngine) - rd(rndEngine));
     float windY = sin(glm::radians(glfwGetTime() * 360.0f)) * (rd(rndEngine) - rd(rndEngine));

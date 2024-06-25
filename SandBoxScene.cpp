@@ -18,26 +18,26 @@ void SandBoxScene::init()
 	ResourceManager::loadSkeletalModel("Vampire", "dancing_vampire.dae");
 	//ResourceManager::loadSkeletalModel("Bob", "boblampclean.md5mesh");
 
-	Actor staticActor;
-	mActors["ClothSim"] = staticActor;
+	mActors["ClothSim"] = Actor{};
 	mActors["ClothSim"].mTransform.mPos = glm::vec4{ 0, 2 , 0, 0 };
 	mActors["ClothSim"].mTransform.mScale = glm::vec4{ 2 };
 	mActors["ClothSim"].mTransform.mEulerRot = glm::vec4{ -30, -90, -90, 0 };
-	auto staticModelComp = mActors["ClothSim"].addComponent<StaticModelComponent>();
+	const auto staticModelComp = mActors["ClothSim"].addComponent<StaticModelComponent>();
 	staticModelComp->mStaticModel = ResourceManager::getStaticModel("Cloth");
 
-	for(int i = 0; i < 0; i++)
+	for(int i = 0; i < 1; i++)
 	{
-		Actor skeletalModel;
 		std::string name;
 		name = "SkeletalModel" + i;
-		mActors[name] = skeletalModel;
+		mActors[name] = Actor{};
 		mActors[name].mTransform.mPos = glm::vec4{ i * 2, 0 , 0, 0 };
 		mActors[name].mTransform.mScale = glm::vec4{ 0.1f };
 		mActors[name].mTransform.mEulerRot = glm::vec4{0, 0, 0, 0 };
 		const auto skeletalModelComp = mActors[name].addComponent<SkeletalModelComponent>();
 		skeletalModelComp->mSkeletalModel = ResourceManager::getSkeletalModel("Vampire");
 	}
+
+	mActors["Camera"].mTransform.mPos = glm::vec4{ 0 ,  0 , 60 , 1 };
 }
 
 void SandBoxScene::beginPlay()

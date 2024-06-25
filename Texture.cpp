@@ -15,11 +15,11 @@ Texture::Texture(const char* image, const char* texType, GLuint slot)
 	unsigned char* bytes = stbi_load(image, &widthImg, &heightImg, &numColCh, 0);
 
 	// Generates an OpenGL texture object
-	glGenTextures(1, &ID);
+	glGenTextures(1, &mId);
 	// Assigns the texture to a Texture Unit
 	glActiveTexture(GL_TEXTURE0 + slot);
 	mUnit = slot;
-	glBindTexture(GL_TEXTURE_2D, ID);
+	glBindTexture(GL_TEXTURE_2D, mId);
 
 	// Configures the type of algorithm that is used to make the image smaller or bigger
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
@@ -100,11 +100,11 @@ Texture::Texture(int bufferSize, void* buffer, const char* texType, GLuint slot)
 	unsigned char* bytes = stbi_load_from_memory((const stbi_uc*)buffer, bufferSize, &widthImg, &heightImg, &numColCh, 0);
 
 	// Generates an OpenGL texture object
-	glGenTextures(1, &ID);
+	glGenTextures(1, &mId);
 	// Assigns the texture to a Texture Unit
 	glActiveTexture(GL_TEXTURE0 + slot);
 	mUnit = slot;
-	glBindTexture(GL_TEXTURE_2D, ID);
+	glBindTexture(GL_TEXTURE_2D, mId);
 
 	// Configures the type of algorithm that is used to make the image smaller or bigger
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
@@ -172,6 +172,17 @@ Texture::Texture(int bufferSize, void* buffer, const char* texType, GLuint slot)
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
+Texture::Texture(const float width, const float height, const GLint internalFormat, const GLenum texFormat, const GLenum texType)
+{
+	glGenTextures(1, &mId);
+	glBindTexture(GL_TEXTURE_2D, mId);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, texFormat, texType, NULL);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+}
+
 void Texture::texUnit(std::shared_ptr<Shader> shader, const char* uniform, GLuint unit)
 {
 	// Gets the location of the uniform
@@ -182,10 +193,14 @@ void Texture::texUnit(std::shared_ptr<Shader> shader, const char* uniform, GLuin
 	glUniform1i(texUni, unit);
 }
 
-void Texture::bind()
+void Texture::activate()
 {
 	glActiveTexture(GL_TEXTURE0 + mUnit);
-	glBindTexture(GL_TEXTURE_2D, ID);
+}
+
+void Texture::bind()
+{
+	glBindTexture(GL_TEXTURE_2D, mId);
 }
 
 void Texture::unbind()
@@ -195,5 +210,5 @@ void Texture::unbind()
 
 void Texture::Delete() const
 {
-	glDeleteTextures(1, &ID);
+	glDeleteTextures(1, &mId);
 }
